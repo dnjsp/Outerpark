@@ -1,4 +1,4 @@
-package OuterparkUser;
+package outerparkuser;
 
 public class OuterparkUserVO {
 	private String userId;

@@ -31,6 +31,7 @@ public class JDBCUtil {
 		}
 		return conn;     
 	}
+	
 	public void DBclose(Connection conn, PreparedStatement pstm, ResultSet rs){
 		try {
 			if ( rs != null )  rs.close();   
@@ -49,6 +50,30 @@ public class JDBCUtil {
 		}catch(Exception e) {
 			e.printStackTrace();
 			return 0;
+		}
+	}
+	
+	public boolean SelectBoolean(String query) {
+		try {
+			conn = this.getConnection();
+			pstm = conn.prepareStatement(query);
+			rs = pstm.executeQuery();	
+			return rs.next();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public String SelectString(String query,String col) {
+		try {
+			conn = this.getConnection();
+			pstm = conn.prepareStatement(query);
+			rs = pstm.executeQuery();
+			rs.next();
+			return rs.getString(col);
+		}catch(Exception e) {
+			return null;
 		}
 	}
 }
