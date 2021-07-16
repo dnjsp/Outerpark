@@ -1,5 +1,8 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import util.JDBCUtil;
 import vo.OuterparkUserVO;
 
@@ -53,6 +56,18 @@ public class OuterparkUserDAO {
 				,vo.getUserId());
 		return jdbc.SelectString(query, "USER_TYPE");
 	}
+	
+	public OuterparkUserVO selectid(OuterparkUserVO vo) {
+	      String query = String.format("SELECT * FROM OUTERPARK_USER WHERE USER_ID = '%s'",vo.getUserId());
+	      ArrayList<HashMap<String, Object>> list = jdbc.selectList(query);
+	      vo.setUserId((String)list.get(0).get("'USER_ID'"));
+	      vo.setUserPassword((String)list.get(0).get("USER_PASSWORD"));
+	      vo.setUserName((String)list.get(0).get("USER_NAME"));
+	      vo.setUserNickname((String)list.get(0).get("USER_NICKNAME"));
+	      vo.setUserMail((String)list.get(0).get("USER_MAIL"));
+	      vo.setUsertype((String)list.get(0).get("USER_TYPE"));
+	      return vo;
+	   }
 
 	
 }

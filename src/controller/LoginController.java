@@ -10,6 +10,7 @@ public class LoginController {
 	private LoginService loginservice = LoginService.getInstance();
 	private HostController host = HostController.getInstance();
 	private UpdateController update = UpdateController.getInstance();
+	private MypageController mypage = MypageController.getInstance();
 	
 	public void start() {
 		int view = 10;
@@ -20,11 +21,10 @@ public class LoginController {
 				case 1: view = loginservice.login(); break;
 				case 2:	view = loginservice.signUp(); break;
 				case 3: view = loginservice.idFound(); break;
-				case 4: view = update.updateInformation(); break;
-				case 5: view = loginservice.deleteUser(); break;
-				case 6: System.exit(0);
-				case 7: view = host.hostMenu(); break;
-				// case 8: view = c
+				case 4: view = mypage.mypage(); break;
+				case 5: System.exit(0);
+				case 6: view = host.hostMenu(); break;
+				// case 7: view = c
 				default:
 					System.out.println("다시 입력해주세요.");
 					view = 10;

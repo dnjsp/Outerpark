@@ -29,8 +29,6 @@ public class CarRegister {
 	public int carInsert() {
 		System.out.print("차 번호> ");
 		String carNumber = scanner.next();
-		System.out.print("Host 아이디> ");
-		String userId = scanner.next();
 		System.out.print("차 종류> ");
 		String carKind = scanner.next();
 		System.out.print("가격> ");
@@ -41,7 +39,7 @@ public class CarRegister {
 		String city = scanner.next();
 		System.out.print("차 색상> ");
 		String carColor = scanner.next();
-		carDao.insertCar(new CarVO(carNumber, userId, carKind, carPrice, carSeats, city, carColor));
+		carDao.insertCar(new CarVO(carNumber, LoginService.loginId.getUserId(), carKind, carPrice, carSeats, city, carColor));
 		System.out.println("등록 성공");
 		return 10;
 	}
