@@ -2,6 +2,7 @@ package view;
 
 import dao.OuterparkUserDAO;
 import util.ScannerBuffer;
+import util.View;
 import vo.OuterparkUserVO;
 
 
@@ -21,7 +22,7 @@ public class LoginService {
 	
 	public int main() {
 		System.out.println("== 어서오세요. OuterPark입니다. ==");
-		System.out.println("1.로그인 | 2.회원가입 | 3.아이디 찾기 | 4.마이페이지 | 5.프로그램 종료");
+		System.out.println("1.로그인 | 2.회원가입 | 3.아이디 찾기 | 4.프로그램 종료");
 		System.out.print("번호를 입력해주세요> ");
 		int input = scanner.nextInt();
 		return input;
@@ -37,13 +38,13 @@ public class LoginService {
 			System.out.println("로그인 성공");
 			loginId = userDao.selectid(new OuterparkUserVO(userId));
 			if (loginId.getUsertype().equals("host")) {
-				return 6;
+				return View.HOSTMENU;
 			} else {
-				return 7;
+				return View.CUSTOMERMENU;
 			}
 		} else {
 			System.out.println("아이디 혹은 비밀번호를 잘못 입력하셨습니다.");
-			return 10;
+			return View.HOME;
 		}
 	}
 
@@ -79,7 +80,7 @@ public class LoginService {
 			System.out.println("회원가입 실패");
 		}
 		
-		return 10;
+		return View.HOME;
 	}
 
 	public int idFound() {
@@ -95,7 +96,7 @@ public class LoginService {
 			System.out.print("아이디> ");
 			System.out.println(userDao.idfoundUser(new OuterparkUserVO(userName, userMail, userNickname)));
 		}
-		return 10;
+		return View.HOME;
 	}
 	
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import util.ScannerBuffer;
+import util.View;
 import view.RoomRegister;
 
 public class RoomController {
@@ -22,12 +23,12 @@ public class RoomController {
 		switch (input) {
 		case 1: roomRegister.roomInsert(); break;
 		case 2: roomRegister.roomDelete(); break;
-		case 3: return 10;
+		case 3: return View.HOSTMENU;
 		default:
 			roomRegister.roomInformation();
 			input = scanner.nextInt();
 			break;
 		}
-		return 1;
+		return 4;
 	}
 }

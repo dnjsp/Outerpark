@@ -1,7 +1,7 @@
 package controller;
 
 import util.ScannerBuffer;
-import view.Host;
+import util.View;
 
 public class HostController {
 	private HostController() {}
@@ -17,22 +17,23 @@ public class HostController {
 	private RoomController roomController = RoomController.getInstance();
 	private CarController carController = CarController.getInstance();
 	private TourController tourController = TourController.getInstance();
-	private Host host = Host.getInstance();
+	private MypageController mypage = MypageController.getInstance();
 	
 	public int hostMenu() {
-		host.host();
+		System.out.println("== Host로 입장하였습니다. ==");
+		System.out.println("1.방 2.렌트카 3.관광명소 4.마이페이지 5.로그아웃"); 
+		System.out.print("번호를 입력해주세요> ");
 		int input = scanner.nextInt();
 		while(true) {
 			switch (input) {
-				case 10: host.host(); 
 				case 1: input = roomController.roomInformation(); break;
 				case 2: input = carController.carInformation(); break;
 				case 3: input = tourController.tourInformation(); break;
-				case 4: return 10;
+				case 4: input = mypage.mypage(); break;
+				case 5: return View.HOME;
 				default: 
-					host.reHost();
-					input = scanner.nextInt();
-					break;
+					System.out.println("잘못 입력하였습니다.");
+					return View.HOSTMENU;
 			}
 		}
 	}
