@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class ScannerBuffer {
-	private ScannerBuffer instance = new ScannerBuffer();
-	public ScannerBuffer getInstance() {
+	private static ScannerBuffer instance = new ScannerBuffer();
+	public static ScannerBuffer getInstance() {
 		return instance;
 	}
 	private ScannerBuffer() {}

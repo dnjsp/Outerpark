@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public class OuterparkUserDAO {
 		return jdbc.SelectString(query, "USER_ID");
 	}
 	
-	public List<Map<String, Object>> select(){
+	public ArrayList<HashMap<String, Object>> select(){
 		String query = "SELECT * FROM OUTERPARK_USER";
 		return jdbc.selectList(query);
 	}

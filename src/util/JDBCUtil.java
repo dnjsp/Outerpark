@@ -48,11 +48,22 @@ public class JDBCUtil {
 		}
 	}
 		
+	public void DBclose(Connection conn, PreparedStatement pstm){
+		try {  
+			if ( pstm != null )pstm.close();  
+			if ( conn != null )conn.close(); 			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public int Update(String query) {
 		try {
 			conn = this.getConnection();
 			pstm = conn.prepareStatement(query);
-			return pstm.executeUpdate();		
+			int excute = pstm.executeUpdate();
+			this.DBclose(conn, pstm);
+			return excute;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -83,28 +94,26 @@ public class JDBCUtil {
 		}
 	}
 	
-	public List<Map<String, Object>> selectList(String query) {
-		List<Map<String, Object>> list = new ArrayList<>();
+	public ArrayList<HashMap<String, Object>> selectList(String query) {
+		ArrayList<HashMap<String, Object>> list = new ArrayList<>();
 		try {
 			conn = this.getConnection();
 			pstm = conn.prepareStatement(query);
 			rs = pstm.executeQuery();
 			metaData = rs.getMetaData();
 			int sizeColumn = metaData.getColumnCount();
-			String[] columnName = new String[metaData.getColumnCount()];
-			for(int i=0;i<sizeColumn;i++) {
-				columnName[i] = metaData.getColumnName(i+1);
-			}
+			
 			while(rs.next()) {
-				HashMap<String, Object> hash = new HashMap<>();
-				for(int i=0;i<sizeColumn;i++) {
-					hash.put(columnName[i],rs.getObject(i));
+				HashMap<String, Object> hash = new HashMap<String,Object>(sizeColumn);
+				for(int i=1;i<=sizeColumn;++i) {
+					hash.put(metaData.getColumnName(i),rs.getObject(i));
 				}
 				list.add(hash);
 			}
 		}catch(Exception e) {
 			return null;
 		}
+		this.DBclose(conn, pstm, rs);
 		return list;
 	}
 }
