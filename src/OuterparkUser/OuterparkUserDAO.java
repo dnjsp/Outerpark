@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class OuterparkUserDAO {
 	private static OuterparkUserDAO instance = new OuterparkUserDAO();
@@ -14,7 +17,7 @@ public class OuterparkUserDAO {
 
 	private OuterparkUserDAO() {}
 	
-	JDBCUtil jdbc = JDBCUtil.getInstance();
+	private JDBCUtil jdbc = JDBCUtil.getInstance();
 	
 	public int insertUser(OuterparkUserVO vo) {
 		String query = String.format("INSERT INTO OUTERPARK_USER VALUES ('%s','%s','%s','%s','%s','%s')"
@@ -32,5 +35,10 @@ public class OuterparkUserDAO {
 		String query = String.format("SELECT * FROM OUTERPARK_USER WHERE USER_NAME = '%s' AND USER_MAIL = '%s'"
 				,vo.getUserName(),vo.getUserMail());
 		return jdbc.SelectString(query, "USER_ID");
+	}
+	
+	public List<Map<String, Object>> select(){
+		String query = "SELECT * FROM OUTERPARK_USER";
+		return jdbc.selectList(query);
 	}
 }

@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class JDBCUtil {
 	private static JDBCUtil instance = new JDBCUtil();
@@ -16,6 +21,7 @@ public class JDBCUtil {
 	Connection conn;
 	PreparedStatement pstm;
 	ResultSet rs;
+	ResultSetMetaData metaData;
 	
 	public Connection getConnection()
 	{
@@ -57,7 +63,7 @@ public class JDBCUtil {
 		try {
 			conn = this.getConnection();
 			pstm = conn.prepareStatement(query);
-			rs = pstm.executeQuery();	
+			rs = pstm.executeQuery();
 			return rs.next();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -75,5 +81,30 @@ public class JDBCUtil {
 		}catch(Exception e) {
 			return null;
 		}
+	}
+	
+	public List<Map<String, Object>> selectList(String query) {
+		List<Map<String, Object>> list = new ArrayList<>();
+		try {
+			conn = this.getConnection();
+			pstm = conn.prepareStatement(query);
+			rs = pstm.executeQuery();
+			metaData = rs.getMetaData();
+			int sizeColumn = metaData.getColumnCount();
+			String[] columnName = new String[metaData.getColumnCount()];
+			for(int i=0;i<sizeColumn;i++) {
+				columnName[i] = metaData.getColumnName(i+1);
+			}
+			while(rs.next()) {
+				HashMap<String, Object> hash = new HashMap<>();
+				for(int i=0;i<sizeColumn;i++) {
+					hash.put(columnName[i],rs.getObject(i));
+				}
+				list.add(hash);
+			}
+		}catch(Exception e) {
+			return null;
+		}
+		return list;
 	}
 }
