@@ -3,11 +3,15 @@ package util;
 import java.util.Random;
 
 public class TemporaryPasswordUtil {
-	
-	public TemporaryPasswordUtil() {
-		
+	private static TemporaryPasswordUtil instance = new TemporaryPasswordUtil();
+	public static TemporaryPasswordUtil getInstance() {
+		return instance;
 	}
-	public static String getTemporaryPassword() {
+	private TemporaryPasswordUtil() {}
+	
+	private PatternCheckUtil pattern = PatternCheckUtil.getInstance();
+	
+	public String getTemporaryPassword() {
 		Random rand = new Random();
 		char pwCollection[] = new char[] {
 				'1','2','3','4','5','6','7','8','9','0',
@@ -20,9 +24,8 @@ public class TemporaryPasswordUtil {
 			for(int i=0;i<10;i++) {
 				int select =(int)rand.nextInt(pwCollection.length);
 				ranPw += pwCollection[select];
-			}	
-			System.out.println("한번");
-		}while(!PatternCheckUtil.patternCheck(ranPw,PatternCheckUtil.passwordPattern));
+			}
+		}while(!pattern.patternCheck(ranPw,pattern.passwordPattern));
 		return ranPw;
 	}
 }

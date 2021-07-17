@@ -10,6 +10,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendMail {
+	private static SendMail instance = new SendMail();
+	public static SendMail getInstance() {
+		return instance;
+	}
+	private SendMail() {}
+	
 	static final String FROM = "show5116@naver.com";
     static final String FROMNAME = "2팀 서비스";
     static final String SMTP_USERNAME = "show5116@naver.com";
@@ -17,10 +23,8 @@ public class SendMail {
     static final String HOST = "smtp.naver.com";
     static final int PORT = 465;
     static final String SUBJECT = "임시 비밀번호 발급";
-
-    public SendMail(){}
     
-    public static void ToSendMail(String mail,String password) {
+    public void ToSendMail(String mail,String password) {
     	String BODY = String.join(
     	        System.getProperty("line.separator"),
     	        "<h1>안녕하세요 2팀입니다.</h1>",

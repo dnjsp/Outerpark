@@ -1,0 +1,31 @@
+package controller;
+
+import view.LoginService;
+
+public class LoginController {
+	public static void main(String[] args) {
+		new LoginController().start();
+	}
+	
+	private LoginService loginservice = LoginService.getInstance();
+	private HostController host = HostController.getInstance();
+	
+	public void start() {
+		int view = 0;
+		
+		while (true) {
+			switch (view) {
+				case 0: view = loginservice.main(); break;
+				case 1: view = loginservice.login(); break;
+				case 2:	view = loginservice.signUp(); break;
+				case 3: view = loginservice.idFound(); break;
+				case 4: view = loginservice.temporary(); break;
+				case 5: System.exit(0);
+				default:
+					System.out.println("다시 입력해주세요.");
+					view = 0;
+					break;
+			}	
+		}
+	}
+}

@@ -1,4 +1,4 @@
-package outerparkuser;
+package vo;
 
 public class OuterparkUserVO {
 	private String userId;
@@ -8,6 +8,28 @@ public class OuterparkUserVO {
 	private String userMail;
 	private String usertype;
 	
+	public OuterparkUserVO(String userId) {
+		this.userId = userId;
+	}
+
+	public OuterparkUserVO(String userId, String userPassword) {
+		this.userId = userId;
+		this.userPassword = userPassword;
+	}
+	
+	public OuterparkUserVO(String userName, String userMail, String userNickname) {
+		this.userName = userName;
+		this.userMail = userMail;
+		this.userNickname = userNickname;
+	}
+	
+	public OuterparkUserVO(String userId, String userName, String userMail, String userNickname) {
+		this.userId = userId;
+		this.userName = userName;
+		this.userMail = userMail;
+		this.userNickname = userNickname;
+	}
+		
 	public OuterparkUserVO(String userId, String userPassword, String userName, String userNickname, String userMail,
 			String usertype) {
 		super();
@@ -60,5 +82,4 @@ public class OuterparkUserVO {
 		return "outerparkUserVO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
 				+ ", userNickname=" + userNickname + ", userMail=" + userMail + ", usertype=" + usertype + "]";
 	}
-	
 }

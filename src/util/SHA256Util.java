@@ -3,7 +3,12 @@ package util;
 import java.security.MessageDigest;
 
 public class SHA256Util {
-	public static String encrypt(String planText) {
+	private static SHA256Util instance = new SHA256Util();
+	public static SHA256Util getInstance() {
+		return instance;
+	}
+	
+	public String encrypt(String planText) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.update(planText.getBytes());
