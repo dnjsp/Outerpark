@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import dao.RoomDAO;
 import util.ScannerBuffer;
 import vo.RoomVO;
@@ -26,7 +29,7 @@ public class RoomRegister {
 		System.out.println("다시 입력해주세요.");
 	}
 	
-	public int roomInsert() {
+	public void roomInsert() {
 		System.out.print("방 번호> ");
 		int roomNumber = scanner.nextInt();
 		System.out.print("Host 아이디> ");
@@ -50,10 +53,9 @@ public class RoomRegister {
 		} else {
 			System.out.println("등록 성공");
 		}
-		return 1;
 	}
 	
-	public int roomDelete() {
+	public void roomDelete() {
 		System.out.print("방 번호> ");
 		int roomNumber = scanner.nextInt();
 		
@@ -62,6 +64,18 @@ public class RoomRegister {
 		} else {
 			System.out.println("존재하지 않는 방입니다.");
 		}
-		return 1;
+	}
+
+	public void roomSearch() {
+		ArrayList<HashMap<String, Object>> list = roomDao.select(LoginService.loginId);
+		int size = list.size();
+		String[] key = {"ROOM_NUMBER","ROOM_NAME","MAX_CAPACITY","ROOM_COUNT","BED_COUNT","ROOM_PRICE","CITY","EXPLANATION"};
+		System.out.println("번호\t이름\t수용인원\t방 개수\t침대 개수\t가격\t지역\t설명");
+		for(int i=0; i<size;i++) {
+			for(int j=0; j<key.length; j++) {
+				System.out.print(list.get(i).get(key[j])+"\t");
+			}
+			System.out.println();
+		}
 	}
 }

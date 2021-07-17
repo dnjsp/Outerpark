@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import dao.TourDAO;
 import util.ScannerBuffer;
 import vo.TourVO;
@@ -26,7 +29,7 @@ public class TourRegister {
 		System.out.println("다시 입력해주세요.");
 	}
 	
-	public int tourInsert() {
+	public void tourInsert() {
 		System.out.print("관광명소 번호> ");
 		int tourNumber = scanner.nextInt();
 		System.out.print("Host 아이디> ");
@@ -43,10 +46,9 @@ public class TourRegister {
 		String explanation = scanner.next();
 		tourDao.insertTour(new TourVO(tourNumber, userId, tourName, tourTime, tourPrice, city, explanation));
 		System.out.println("등록 성공");
-		return 3;
 	}
 	
-	public int tourDelete() {
+	public void tourDelete() {
 		System.out.print("관광명소 번호> ");
 		int tourNumber = scanner.nextInt(); 
 		// 비밀번호 입력
@@ -55,6 +57,18 @@ public class TourRegister {
 		} else {
 			System.out.println("존재하지 않는 관광명소입니다.");
 		}
-		return 3;
+	}
+	
+	public void tourSearch() {
+		ArrayList<HashMap<String, Object>> list = tourDao.select(LoginService.loginId);
+		int size = list.size();
+		String[] key = {"TOUR_NUMBER","TOUR_NAME","TOUR_TIME","TOUR_PRICE","CITY","EXPLANATION"};
+		System.out.println("번호\t이름\t시간\t가격\t지역\t설명");
+		for(int i=0; i<size;i++) {
+			for(int j=0; j<key.length; j++) {
+				System.out.print(list.get(i).get(key[j])+"\t");
+			}
+			System.out.println();
+		}
 	}
 }

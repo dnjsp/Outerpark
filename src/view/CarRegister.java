@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import dao.CarDAO;
 import util.ScannerBuffer;
 import vo.CarVO;
@@ -46,7 +49,7 @@ public class CarRegister {
 		return 10;
 	}
 	
-	public int carDelete() {
+	public void carDelete() {
 		System.out.print("차 번호> ");
 		String carNumber = scanner.next(); 
 		// 비밀번호 입력
@@ -55,6 +58,18 @@ public class CarRegister {
 		} else {
 			System.out.println("존재하지 않는 차량입니다.");
 		}
-		return 10;
+	}
+	
+	public void carSearch() {
+		ArrayList<HashMap<String, Object>> list = carDao.select(LoginService.loginId);
+		int size = list.size();
+		String[] key = {"CAR_NUMBER","CAR_KIND","CAR_PRICE","CAR_SEATS","CITY","CAR_COLOR"};
+		System.out.println("번호\t종류\t가격\t인승\t지역\t색상");
+		for(int i=0; i<size;i++) {
+			for(int j=0; j<key.length; j++) {
+				System.out.print(list.get(i).get(key[j])+"\t");
+			}
+			System.out.println();
+		}
 	}
 }

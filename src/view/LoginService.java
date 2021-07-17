@@ -99,7 +99,6 @@ public class LoginService {
 		} else {
 			System.out.println("회원가입 실패");
 		}
-		
 		return 0;
 	}
 

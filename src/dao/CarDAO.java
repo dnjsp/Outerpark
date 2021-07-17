@@ -1,7 +1,11 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import util.JDBCUtil;
 import vo.CarVO;
+import vo.OuterparkUserVO;
 
 public class CarDAO {
 	private static CarDAO instance = new CarDAO(); 
@@ -22,5 +26,10 @@ public class CarDAO {
 	public int deleteCar(CarVO vo) {
 		String query = String.format("DELETE FROM CAR WHERE CAR_NUMBER = '%s'", vo.getCarNumber());
 		return jdbc.Update(query);
+	}
+	
+	public ArrayList<HashMap<String, Object>> select(OuterparkUserVO vo) {
+		String query = String.format("SELECT * FROM CAR WHERE USER_ID = '%s'", vo.getUserId());
+		return jdbc.selectList(query);
 	}
 }
