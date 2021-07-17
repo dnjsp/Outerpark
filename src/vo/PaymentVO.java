@@ -1,6 +1,6 @@
 package vo;
 
-public class Payment {
+public class PaymentVO {
 	private int cartNo;
 	private String userId;
 	private int packNum;
@@ -10,7 +10,7 @@ public class Payment {
 	private String payDate;
 	private String refund;
 	
-	public Payment(int cartNo, String userId, int packNum, String startDate, String endDate, int people, String payDate,
+	public PaymentVO(int cartNo, String userId, int packNum, String startDate, String endDate, int people, String payDate,
 			String refund) {
 		this.cartNo = cartNo;
 		this.userId = userId;
@@ -91,5 +91,4 @@ public class Payment {
 		return "Payment [cartNo=" + cartNo + ", userId=" + userId + ", packNum=" + packNum + ", startDate=" + startDate
 				+ ", endDate=" + endDate + ", people=" + people + ", payDate=" + payDate + ", refund=" + refund + "]";
 	}
-	
 }

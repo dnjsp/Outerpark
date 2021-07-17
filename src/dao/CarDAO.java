@@ -28,7 +28,7 @@ public class CarDAO {
 		return jdbc.Update(query);
 	}
 	
-	public ArrayList<HashMap<String, Object>> select(OuterparkUserVO vo){
+	public ArrayList<HashMap<String, Object>> select(OuterparkUserVO vo) {
 		String query = String.format("SELECT * FROM CAR WHERE USER_ID = '%s'", vo.getUserId());
 		return jdbc.selectList(query);
 	}

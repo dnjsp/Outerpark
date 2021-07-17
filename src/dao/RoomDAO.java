@@ -1,6 +1,10 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import util.JDBCUtil;
+import vo.OuterparkUserVO;
 import vo.RoomVO;
 
 public class RoomDAO {
@@ -20,8 +24,13 @@ public class RoomDAO {
 	}
 	
 	public int deleteRoom(RoomVO vo) {
-		String query = String.format("DELETE FROM ROOM WHERE ROOM_NUMBER = '%s'", vo.getRoomNumber());
+		String query = String.format("DELETE FROM ROOM WHERE ROOM_NUMBER = %d", vo.getRoomNumber());
 		return jdbc.Update(query);
+	}
+	
+	public ArrayList<HashMap<String, Object>> select(OuterparkUserVO vo) {
+		String query = String.format("SELECT * FROM ROOM WHERE USER_ID = '%s'", vo.getUserId());
+		return jdbc.selectList(query);
 	}
 
 }

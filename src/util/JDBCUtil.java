@@ -49,6 +49,15 @@ public class JDBCUtil {
 		}
 	}
 		
+	public void DBclose(Connection conn, PreparedStatement pstm){
+		try {  
+			if ( pstm != null )pstm.close();  
+			if ( conn != null )conn.close(); 			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public int Update(String query) {
 		try {
 			conn = this.getConnection();

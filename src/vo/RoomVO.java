@@ -106,5 +106,4 @@ public class RoomVO {
 				+ maxCapacitt + ", roomCount=" + roomCount + ", bedCount=" + bedCount + ", roomPrice=" + roomPrice
 				+ ", city=" + city + ", explanation=" + explanation + "]";
 	}
-	
 }

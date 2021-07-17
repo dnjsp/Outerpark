@@ -85,6 +85,4 @@ public class CarVO {
 		return "CarVO [carNumber=" + carNumber + ", userId=" + userId + ", carKind=" + carKind + ", carPrice="
 				+ carPrice + ", carSeats=" + carSeats + ", city=" + city + ", carColor=" + carColor + "]";
 	}
-	
-	
 }

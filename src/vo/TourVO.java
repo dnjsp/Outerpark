@@ -1,3 +1,4 @@
+  
 package vo;
 
 public class TourVO {
@@ -85,6 +86,4 @@ public class TourVO {
 		return "TourVO [tourNumber=" + tourNumber + ", userId=" + userId + ", tourName=" + tourName + ", tourTime="
 				+ tourTime + ", tourPrice=" + tourPrice + ", city=" + city + ", explanation=" + explanation + "]";
 	}
-	
-	
 }

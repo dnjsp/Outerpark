@@ -22,7 +22,7 @@ public class CarRegister {
 	private CarDAO carDao = CarDAO.getInstance();
 	private ScannerBuffer scanner = ScannerBuffer.getInstance();
 	
-	public int carInsert() {
+	public void carInsert() {
 		System.out.print("차 번호> ");
 		String carNumber = scanner.next();
 		System.out.print("차 종류> ");
@@ -40,10 +40,9 @@ public class CarRegister {
 		} else {
 			System.out.println("등록에 실패했습니다.");
 		}
-		return View.HOSTMENU;
 	}
 	
-	public int carDelete() {
+	public void carDelete() {
 		System.out.print("차 번호> ");
 		String carNumber = scanner.next();
 		if (carDao.deleteCar(new CarVO(carNumber)) == 1) {
@@ -51,10 +50,9 @@ public class CarRegister {
 		} else {
 			System.out.println("존재하지 않는 차량입니다.");
 		}
-		return View.HOSTMENU;
 	}
 	
-	public int carSearch() {
+	public void carSearch() {
 		ArrayList<HashMap<String, Object>> list = carDao.select(LoginService.loginId);
 		int size = list.size();
 		String[] key = {"CAR_NUMBER","CAR_KIND","CAR_PRICE","CAR_SEATS","CITY","CAR_COLOR"};
@@ -65,6 +63,5 @@ public class CarRegister {
 			}
 			System.out.println();
 		}
-		return View.HOSTMENU;
 	}
 }

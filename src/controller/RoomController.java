@@ -17,18 +17,17 @@ public class RoomController {
 	private ScannerBuffer scanner = ScannerBuffer.getInstance();
 	private RoomRegister roomRegister = RoomRegister.getInstance();
 	
-	public int roomInformation() {
-		roomRegister.roomInformation();
+	public void roomInformation() {
+		System.out.println("1.방 등록 2.방 삭제 3.목록 조회 4.뒤로가기");
+		System.out.print("번호를 입력해주세요> ");
 		int input = scanner.nextInt();
 		switch (input) {
 		case 1: roomRegister.roomInsert(); break;
 		case 2: roomRegister.roomDelete(); break;
-		case 3: return View.HOSTMENU;
+		case 3: roomRegister.roomSearch(); break;
+		case 4: return;
 		default:
-			roomRegister.roomInformation();
-			input = scanner.nextInt();
-			break;
+			System.out.println("잘못 입력하였습니다.");
 		}
-		return 4;
 	}
 }

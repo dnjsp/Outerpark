@@ -23,20 +23,14 @@ public class OuterparkUserDAO {
 	}
 	
 	public int deleteUser(OuterparkUserVO vo) {
-		String query = String.format("DELETE FROM OUTERPARK_USER WHERE USER_ID = '%s' WHERE USER_PASSWORD = '%s'"
+		String query = String.format("DELETE FROM OUTERPARK_USER WHERE USER_ID = '%s' AND USER_PASSWORD = '%s'"
 				, vo.getUserId(), vo.getUserPassword());
 		return jdbc.Update(query);
 	}
 	
-	public int updatePassword(OuterparkUserVO vo, String changePassword) {
-		String query = String.format("UPDATE OUTERPARK_USER SET USER_PASSWORD = '%s'"
-				+ " WHERE USER_ID = '%s' AND USER_PASSWORD = '%s'", changePassword, vo.getUserId(), vo.getUserPassword());
-		return jdbc.Update(query);
-	}
-	
-	public int updateNickname(OuterparkUserVO vo) {
-		String query = String.format("UPDATE OUTERPARK_USER SET USER_NICKNAME = '%s'"
-				+ " WHERE USER_ID = '%s' AND USER_PASSWORD = '%s'", vo.getUserNickname(), vo.getUserId(), vo.getUserPassword());
+	public int updateUser(OuterparkUserVO vo,String type ,String changeword) {
+		String query = String.format("UPDATE OUTERPARK_USER SET %s = '%s' WHERE USER_ID = '%s'",
+				type, changeword, vo.getUserId());
 		return jdbc.Update(query);
 	}
 	
@@ -55,6 +49,13 @@ public class OuterparkUserDAO {
 	public ArrayList<HashMap<String, Object>> select(){
 		String query = "SELECT * FROM OUTERPARK_USER";
 		return jdbc.selectList(query);
+	}
+	
+	public int tempPassword(OuterparkUserVO vo, String changePassword) {
+		String query = String.format("UPDATE OUTERPARK_USER SET USER_PASSWORD = '%s' "
+				+ "WHERE USER_ID = '%s' AND USER_NAME = '%s' AND USER_MAIL = '%s' AND USER_NICKNAME = '%s'",
+				changePassword, vo.getUserId(), vo.getUserName() ,vo.getUserMail(),vo.getUserNickname());
+		return jdbc.Update(query);
 	}
 	
 	public OuterparkUserVO selectid(OuterparkUserVO vo) {
