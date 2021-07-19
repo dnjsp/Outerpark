@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import util.JDBCUtil;
+import view.LoginService;
 import vo.CarVO;
 import vo.OuterparkUserVO;
 
@@ -24,7 +25,7 @@ public class CarDAO {
 	}
 	
 	public int deleteCar(CarVO vo) {
-		String query = String.format("DELETE FROM CAR WHERE CAR_NUMBER = '%s'", vo.getCarNumber());
+		String query = String.format("DELETE FROM CAR WHERE CAR_NUMBER = '%s' AND USER_ID = '%s'", vo.getCarNumber(),LoginService.loginId.getUserId());
 		return jdbc.Update(query);
 	}
 	

@@ -1,10 +1,7 @@
 package view;
 
 import dao.OuterparkUserDAO;
-import util.PatternCheckUtil;
-import util.SHA256Util;
-import util.ScannerBuffer;
-import util.View;
+import util.*;
 import vo.OuterparkUserVO;
 
 public class Mypage {
@@ -56,7 +53,7 @@ public class Mypage {
 		if (userDao.deleteUser(new OuterparkUserVO(LoginService.loginId.getUserId(),userPassword)) == 1) {
 			System.out.println("아이디를 삭제했습니다.");
 		} else {
-			System.out.println("존재하지 않는 아이디입니다."); // 에러남
+			System.out.println("존재하지 않는 아이디입니다.");
 		}
 	}
 }

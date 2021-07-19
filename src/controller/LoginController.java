@@ -8,7 +8,6 @@ public class LoginController {
 	}
 	
 	private LoginService loginservice = LoginService.getInstance();
-	private HostController host = HostController.getInstance();
 	
 	public void start() {
 		int view = 0;

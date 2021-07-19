@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import util.JDBCUtil;
+import view.LoginService;
 import vo.OuterparkUserVO;
 import vo.TourVO;
 
@@ -18,13 +19,13 @@ public class TourDAO {
 	JDBCUtil jdbc = JDBCUtil.getInstance();
 	
 	public int insertTour(TourVO vo) {
-		String query = String.format("INSERT INTO TOUR VALUES (%d,'%s','%s','%s',%d,'%s','%s')"
-				, vo.getTourNumber(), vo.getUserId(), vo.getTourName(), vo.getTourTime(), vo.getTourPrice(), vo.getCity(), vo.getExplanation() );
+		String query = String.format("INSERT INTO TOUR VALUES (%s,'%s','%s','%s',%d,'%s','%s')"
+				, "SEQ_TOUR.NEXTVAL", vo.getUserId(), vo.getTourName(), vo.getTourTime(), vo.getTourPrice(), vo.getCity(), vo.getExplanation() );
 		return jdbc.Update(query);
 	}
 	
 	public int deleteTour(TourVO vo) {
-		String query = String.format("DELETE FROM CAR WHERE TOUR_NUMBER = %d", vo.getTourNumber());
+		String query = String.format("DELETE FROM CAR WHERE TOUR_NUMBER = %d AND USER_ID = '%s'", vo.getTourNumber(),LoginService.loginId.getUserId());
 		return jdbc.Update(query);
 	}
 

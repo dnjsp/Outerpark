@@ -8,7 +8,4 @@ public class View {
 	public static final int EXIT = 4; // 프로그램 종료
 	
 	public static final int ROOMCHOICE = 1; // 프로그램 종료
-
-	//public static final int HOSTMENU = 5; // 호스트메뉴
-	//public static final int CUSTOMERMENU = 6; // 고객메뉴
 }

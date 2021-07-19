@@ -10,14 +10,9 @@ public class RoomVO {
 	private int roomPrice;
 	private String city;
 	private String explanation;
-	
-	public RoomVO(int roomNumber) {
-		this.roomNumber = roomNumber;
-	}
-	
-	public RoomVO(int roomNumber, String userId, String roomName, int maxCapacitt, int roomCount, int bedCount,
+
+	public RoomVO(String userId, String roomName, int maxCapacitt, int roomCount, int bedCount,
 			int roomPrice, String city, String explanation) {
-		this.roomNumber = roomNumber;
 		this.userId = userId;
 		this.roomName = roomName;
 		this.maxCapacitt = maxCapacitt;
@@ -27,7 +22,11 @@ public class RoomVO {
 		this.city = city;
 		this.explanation = explanation;
 	}
-
+	
+	public RoomVO(int roomNumber) {
+		this.roomNumber = roomNumber;
+	}
+	
 	public int getRoomNumber() {
 		return roomNumber;
 	}

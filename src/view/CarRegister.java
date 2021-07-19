@@ -20,20 +20,9 @@ public class CarRegister {
 	private CarDAO carDao = CarDAO.getInstance();
 	private ScannerBuffer scanner = ScannerBuffer.getInstance();
 	
-	public void carInformation() {
-		System.out.println("1.렌트카 등록 2.렌트카 삭제 3.뒤로 가기");
-		System.out.print("번호를 입력해주세요> ");
-	}
-	
-	public void reCarInformation() {
-		System.out.println("다시 입력해주세요.");
-	}
-	
-	public int carInsert() {
+	public void carInsert() {
 		System.out.print("차 번호> ");
 		String carNumber = scanner.next();
-		System.out.print("Host 아이디> ");
-		String userId = scanner.next();
 		System.out.print("차 종류> ");
 		String carKind = scanner.next();
 		System.out.print("가격> ");
@@ -44,19 +33,20 @@ public class CarRegister {
 		String city = scanner.next();
 		System.out.print("차 색상> ");
 		String carColor = scanner.next();
-		carDao.insertCar(new CarVO(carNumber, userId, carKind, carPrice, carSeats, city, carColor));
-		System.out.println("등록 성공");
-		return 10;
+		if (carDao.insertCar(new CarVO(carNumber, LoginService.loginId.getUserId(), carKind, carPrice, carSeats, city, carColor)) == 1) {
+			System.out.println("등록 성공");
+		} else {
+			System.out.println("등록에 실패했습니다.");
+		}
 	}
 	
 	public void carDelete() {
 		System.out.print("차 번호> ");
 		String carNumber = scanner.next(); 
-		// 비밀번호 입력
 		if (carDao.deleteCar(new CarVO(carNumber)) == 1) {
 			System.out.println("삭제되었습니다.");
 		} else {
-			System.out.println("존재하지 않는 차량입니다.");
+			System.out.println("존재하지 않거나 본인이 등록한 차가 아닙니다.");
 		}
 	}
 	
