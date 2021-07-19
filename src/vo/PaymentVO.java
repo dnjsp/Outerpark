@@ -6,13 +6,15 @@ public class PaymentVO {
 	private int packNum;
 	private String payDate;
 	private String state;
+	private int price;
 
-	public PaymentVO(int cartNo, String userId, int packNum, String payDate, String state) {
+	public PaymentVO(int cartNo, String userId, int packNum, String payDate, String state, int price) {
 		this.cartNo = cartNo;
 		this.userId = userId;
 		this.packNum = packNum;
 		this.payDate = payDate;
 		this.state = state;
+		this.price = price;
 	}
 
 	public int getCartNo() {
@@ -55,10 +57,17 @@ public class PaymentVO {
 		this.state = state;
 	}
 
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	@Override
 	public String toString() {
 		return "PaymentVO [cartNo=" + cartNo + ", userId=" + userId + ", packNum=" + packNum + ", payDate=" + payDate
-				+ ", state=" + state + "]";
+				+ ", state=" + state + ", price=" + price + "]";
 	}
-	
 }

@@ -68,9 +68,17 @@ public class LoginService {
 	public int signUp() {
 		String userId = "";
 		while(!pattern.patternCheck(userId,pattern.idPattern)) {
-			System.out.println("아이디는 첫문자 영어, 6자 이상이어야 합니다.");
-			System.out.print("아이디> ");
-			userId = scanner.next();
+			while (userId.isEmpty()) {
+				System.out.println("아이디는 첫문자 영어, 6자 이상이어야 합니다.");
+				System.out.print("아이디> ");
+				String inputId = scanner.next();
+				if (userDao.duplicateId(new OuterparkUserVO(inputId))) {
+					System.out.println("중복된 아이디입니다.");
+				} else {
+					userId = inputId;
+					System.out.println("사용 가능한 아이디입니다.");
+				}
+			}
 		}
 		String userPassword = "";
 		while(!pattern.patternCheck(userPassword, pattern.passwordPattern)) {
@@ -85,7 +93,7 @@ public class LoginService {
 		String userNickname = scanner.next();
 		String userMail = "";
 		while(!pattern.patternCheck(userMail, pattern.mailPattern)) {
-			System.out.println("올바른 메일 형식으로 입력해야 합니다.");
+			System.out.println("== 메일은 올바른 메일 형식으로 입력해야 합니다. ==");
 			System.out.print("메일> ");
 			userMail = scanner.next();
 		}

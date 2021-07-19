@@ -7,9 +7,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 
 public class JDBCUtil {
 	private static JDBCUtil instance = new JDBCUtil();
@@ -62,7 +59,9 @@ public class JDBCUtil {
 		try {
 			conn = this.getConnection();
 			pstm = conn.prepareStatement(query);
-			return pstm.executeUpdate();		
+			int excute = pstm.executeUpdate();
+			this.DBclose(conn, pstm);
+			return excute;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -73,7 +72,7 @@ public class JDBCUtil {
 		try {
 			conn = this.getConnection();
 			pstm = conn.prepareStatement(query);
-			rs = pstm.executeQuery();	
+			rs = pstm.executeQuery();
 			return rs.next();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -90,6 +89,18 @@ public class JDBCUtil {
 			return rs.getString(col);
 		}catch(Exception e) {
 			return null;
+		}
+	}
+	
+	public int Selectint(String query,String col) {
+		try {
+			conn = this.getConnection();
+			pstm = conn.prepareStatement(query);
+			rs = pstm.executeQuery();
+			rs.next();
+			return rs.getInt(col);
+		}catch(Exception e) {
+			return 0;
 		}
 	}
 	
@@ -115,4 +126,5 @@ public class JDBCUtil {
 		this.DBclose(conn, pstm, rs);
 		return list;
 	}
+	
 }

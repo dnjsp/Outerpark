@@ -1,12 +1,7 @@
 package dao;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import util.JDBCUtil;
-import vo.CarVO;
-import vo.RoomVO;
-import vo.TourVO;
+import vo.PackVO;
 
 public class PackDAO {
 	private static PackDAO instance = new PackDAO();
@@ -18,18 +13,17 @@ public class PackDAO {
 	
 	JDBCUtil jdbc = JDBCUtil.getInstance();
 	
-	public ArrayList<HashMap<String, Object>> selectRoom (RoomVO vo) {
-		String query = String.format("SELECT * FROM ROOM WHERE CITY = '%s' AND MAX_CAPACITY >= %d", vo.getCity(), vo.getMaxCapacity());
-		return jdbc.selectList(query);
+	public int insertPack(PackVO vo) {
+		String query = String.format("INSERT INTO PACK VALUES(SEQ_PACK.NEXTVAL,%d,%d,'%s','%s','%s',%d)"
+				,vo.getTourNumber(),vo.getRoomNumber(),vo.getCarNumber(),vo.getStartDate(),vo.getEndDate(),vo.getPeople() );
+		return jdbc.Update(query);
 	}
 	
-	public ArrayList<HashMap<String, Object>> selectCar (CarVO vo) {
-		String query = String.format("SELECT * FROM CAR WHERE CITY = '%s' AND CAR_SEATS >= %d", vo.getCity(), vo.getCarSeats());
-		return jdbc.selectList(query);
-	}
-
-	public ArrayList<HashMap<String, Object>> selectTour (TourVO vo) {
-		String query = String.format("SELECT * FROM TOUR WHERE CITY = '%s'", vo.getCity());
-		return jdbc.selectList(query);
+	public int getPackNumber() {
+		String query = "SELECT A.PACK_NUMBER \r\n"
+				+ "      FROM ( SELECT PACK_NUMBER FROM PACK\r\n"
+				+ "              ORDER BY 1 DESC) A\r\n"
+				+ "     WHERE ROWNUM = 1";
+		return jdbc.Selectint(query, "PACK_NUMBER");
 	}
 }

@@ -22,12 +22,6 @@ public class OuterparkUserDAO {
 		return jdbc.Update(query);
 	}
 	
-	public int deleteUser(OuterparkUserVO vo) {
-		String query = String.format("DELETE FROM OUTERPARK_USER WHERE USER_ID = '%s' AND USER_PASSWORD = '%s'"
-				, vo.getUserId(), vo.getUserPassword());
-		return jdbc.Update(query);
-	}
-	
 	public int updateUser(OuterparkUserVO vo,String type ,String changeword) {
 		String query = String.format("UPDATE OUTERPARK_USER SET %s = '%s' WHERE USER_ID = '%s'",
 				type, changeword, vo.getUserId());
@@ -37,6 +31,12 @@ public class OuterparkUserDAO {
 	public boolean loginUser(OuterparkUserVO vo) {
 		String query = String.format("SELECT * FROM OUTERPARK_USER WHERE USER_ID = '%s' AND USER_PASSWORD = '%s'"
 				,vo.getUserId(),vo.getUserPassword());	
+		return jdbc.SelectBoolean(query);
+	}
+	
+	public boolean duplicateId(OuterparkUserVO vo) {
+		String query = String.format("SELECT * FROM OUTERPARK_USER WHERE USER_ID = '%s'"
+				,vo.getUserId());	
 		return jdbc.SelectBoolean(query);
 	}
 	

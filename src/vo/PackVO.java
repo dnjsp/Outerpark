@@ -20,6 +20,17 @@ public class PackVO {
 		this.people = people;
 	}
 
+	public PackVO(int tourNumber, int roomNumber, String carNumber, String startDate, String endDate,
+			int people) {
+		super();
+		this.tourNumber = tourNumber;
+		this.roomNumber = roomNumber;
+		this.carNumber = carNumber;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.people = people;
+	}
+	
 	public int getPackNum() {
 		return packNum;
 	}

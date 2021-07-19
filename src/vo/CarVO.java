@@ -13,6 +13,11 @@ public class CarVO {
 		this.carNumber = carNumber;
 	}
 	
+	public CarVO(String city,int carSeats) {
+		this.city = city;
+		this.carSeats = carSeats;
+	}
+	
 	public CarVO(String carNumber, String userId, String carKind, int carPrice, int carSeats, String city,
 			String carColor) {
 		this.carNumber = carNumber;

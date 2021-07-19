@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import dao.RoomDAO;
 import util.ScannerBuffer;
-import util.View;
 import vo.RoomVO;
 
 public class RoomRegister {
@@ -22,8 +21,6 @@ public class RoomRegister {
 	private RoomDAO roomDao = RoomDAO.getInstance();
 
 	public void roomInsert() {
-		System.out.print("방 번호> ");
-		int roomNumber = scanner.nextInt();
 		System.out.print("방 이름> ");
 		String roomName = scanner.next();
 		System.out.print("수용인원> ");
@@ -38,7 +35,7 @@ public class RoomRegister {
 		String city = scanner.next();
 		System.out.print("설명> ");
 		String explanation = scanner.next();
-		if (roomDao.insertRoom(new RoomVO(roomNumber, LoginService.loginId.getUserId(), roomName, maxCapacity, roomCount, bedCount, roomPrice, city, explanation)) == 0) {
+		if (roomDao.insertRoom(new RoomVO(LoginService.loginId.getUserId(), roomName, maxCapacity, roomCount, bedCount, roomPrice, city, explanation)) == 0) {
 			System.out.println("등록에 실패했습니다.");
 		} else {
 			System.out.println("등록 성공");
@@ -51,7 +48,7 @@ public class RoomRegister {
 		if (roomDao.deleteRoom(new RoomVO(roomNumber)) == 1) {
 			System.out.println("삭제되었습니다.");
 		} else {
-			System.out.println("존재하지 않는 방입니다.");
+			System.out.println("존재하지 않거나 본인이 등록한 방이 아닙니다.");
 		}
 	}
 	

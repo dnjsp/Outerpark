@@ -1,7 +1,6 @@
 package controller;
 
 import util.ScannerBuffer;
-import util.View;
 import view.TourRegister;
 
 public class TourController {

@@ -5,8 +5,6 @@ import java.util.HashMap;
 
 import dao.TourDAO;
 import util.ScannerBuffer;
-import util.View;
-import vo.CarVO;
 import vo.TourVO;
 
 public class TourRegister {
@@ -23,8 +21,6 @@ public class TourRegister {
 	private ScannerBuffer scanner = ScannerBuffer.getInstance();
 	
 	public void tourInsert() {
-		System.out.print("관광명소 번호> ");
-		int tourNumber = scanner.nextInt();
 		System.out.print("관광명소 이름> ");
 		String tourName = scanner.next();
 		System.out.print("관광명소 시간> ");
@@ -35,7 +31,7 @@ public class TourRegister {
 		String city = scanner.next();
 		System.out.print("설명> ");
 		String explanation = scanner.next();
-		if (tourDao.insertTour(new TourVO(tourNumber, LoginService.loginId.getUserId(), tourName, tourTime, tourPrice, city, explanation)) == 1) {
+		if (tourDao.insertTour(new TourVO(LoginService.loginId.getUserId(), tourName, tourTime, tourPrice, city, explanation)) == 1) {
 			System.out.println("등록 성공");
 		} else {
 			System.out.println("등록에 실패했습니다.");
@@ -48,7 +44,7 @@ public class TourRegister {
 		if (tourDao.deleteTour(new TourVO(tourNumber)) == 1) {
 			System.out.println("삭제되었습니다.");
 		} else {
-			System.out.println("존재하지 않는 관광명소입니다.");
+			System.out.println("존재하지 않거나 본인이 등록한 관광명소가 아닙니다.");
 		}
 	}
 	

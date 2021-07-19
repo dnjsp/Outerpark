@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import dao.CarDAO;
-import dao.OuterparkUserDAO;
 import util.ScannerBuffer;
-import util.View;
 import vo.CarVO;
 
 public class CarRegister {
@@ -48,7 +46,7 @@ public class CarRegister {
 		if (carDao.deleteCar(new CarVO(carNumber)) == 1) {
 			System.out.println("삭제되었습니다.");
 		} else {
-			System.out.println("존재하지 않는 차량입니다.");
+			System.out.println("존재하지 않거나 본인이 등록한 차가 아닙니다.");
 		}
 	}
 	

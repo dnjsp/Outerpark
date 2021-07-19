@@ -1,7 +1,6 @@
 package controller;
 
 import util.ScannerBuffer;
-import util.View;
 import view.LoginService;
 
 public class HostController {

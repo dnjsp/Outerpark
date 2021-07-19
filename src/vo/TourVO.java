@@ -10,13 +10,16 @@ public class TourVO {
 	private String city;
 	private String explanation;
 	
+	public TourVO(String city) {
+		this.city = city;
+	}
+		
 	public TourVO(int tourNumber) {
 		this.tourNumber = tourNumber;
 	}
 	
-	public TourVO(int tourNumber, String userId, String tourName, String tourTime, int tourPrice, String city,
+	public TourVO(String userId, String tourName, String tourTime, int tourPrice, String city,
 			String explanation) {
-		this.tourNumber = tourNumber;
 		this.userId = userId;
 		this.tourName = tourName;
 		this.tourTime = tourTime;
