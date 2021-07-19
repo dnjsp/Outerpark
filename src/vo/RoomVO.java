@@ -4,7 +4,7 @@ public class RoomVO {
 	private int roomNumber;
 	private String userId;
 	private String roomName;
-	private int maxCapacitt;
+	private int maxCapacity;
 	private int roomCount;
 	private int bedCount;
 	private int roomPrice;
@@ -15,12 +15,12 @@ public class RoomVO {
 		this.roomNumber = roomNumber;
 	}
 	
-	public RoomVO(int roomNumber, String userId, String roomName, int maxCapacitt, int roomCount, int bedCount,
+	public RoomVO(int roomNumber, String userId, String roomName, int maxCapacity, int roomCount, int bedCount,
 			int roomPrice, String city, String explanation) {
 		this.roomNumber = roomNumber;
 		this.userId = userId;
 		this.roomName = roomName;
-		this.maxCapacitt = maxCapacitt;
+		this.maxCapacity = maxCapacity;
 		this.roomCount = roomCount;
 		this.bedCount = bedCount;
 		this.roomPrice = roomPrice;
@@ -52,12 +52,12 @@ public class RoomVO {
 		this.roomName = roomName;
 	}
 
-	public int getMaxCapacitt() {
-		return maxCapacitt;
+	public int getMaxCapacity() {
+		return maxCapacity;
 	}
 
-	public void setMaxCapacitt(int maxCapacitt) {
-		this.maxCapacitt = maxCapacitt;
+	public void setMaxCapacity(int maxCapacity) {
+		this.maxCapacity = maxCapacity;
 	}
 
 	public int getRoomCount() {
@@ -102,8 +102,8 @@ public class RoomVO {
 
 	@Override
 	public String toString() {
-		return "RoomVO [roomNumber=" + roomNumber + ", userId=" + userId + ", roomName=" + roomName + ", maxCapacitt="
-				+ maxCapacitt + ", roomCount=" + roomCount + ", bedCount=" + bedCount + ", roomPrice=" + roomPrice
+		return "RoomVO [roomNumber=" + roomNumber + ", userId=" + userId + ", roomName=" + roomName + ", maxCapacity="
+				+ maxCapacity + ", roomCount=" + roomCount + ", bedCount=" + bedCount + ", roomPrice=" + roomPrice
 				+ ", city=" + city + ", explanation=" + explanation + "]";
 	}
 }

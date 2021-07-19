@@ -1,5 +1,6 @@
 package view;
 
+import controller.CustomerController;
 import controller.HostController;
 import dao.OuterparkUserDAO;
 import util.PatternCheckUtil;
@@ -24,6 +25,7 @@ public class LoginService {
 	private OuterparkUserDAO userDao = OuterparkUserDAO.getInstance();
 	private ScannerBuffer scanner = ScannerBuffer.getInstance();
 	private HostController host = HostController.getInstance();
+	private CustomerController customer = CustomerController.getInstance();
 	
 	private SHA256Util sha = SHA256Util.getInstance();
 	private PatternCheckUtil pattern = PatternCheckUtil.getInstance();
@@ -54,7 +56,8 @@ public class LoginService {
 				host.hostMenu();
 				return 0;
 			} else {
-				return 0; // 고객메뉴
+				customer.customerMenu();
+				return 0;
 			}
 		} else {
 			System.out.println("아이디 혹은 비밀번호를 잘못 입력하셨습니다.");

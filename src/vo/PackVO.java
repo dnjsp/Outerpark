@@ -5,14 +5,19 @@ public class PackVO {
 	private int tourNumber;
 	private int roomNumber;
 	private String carNumber;
-	private int saleRate;
-
-	public PackVO(int packNum, int tourNumber, int roomNumber, String carNumber, int saleRate) {
+	private String startDate;
+	private String endDate;
+	private int people;
+	
+	public PackVO(int packNum, int tourNumber, int roomNumber, String carNumber, String startDate, String endDate,
+			int people) {
 		this.packNum = packNum;
 		this.tourNumber = tourNumber;
 		this.roomNumber = roomNumber;
 		this.carNumber = carNumber;
-		this.saleRate = saleRate;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.people = people;
 	}
 
 	public int getPackNum() {
@@ -47,18 +52,35 @@ public class PackVO {
 		this.carNumber = carNumber;
 	}
 
-	public int getSaleRate() {
-		return saleRate;
+	public String getStartDate() {
+		return startDate;
 	}
 
-	public void setSaleRate(int saleRate) {
-		this.saleRate = saleRate;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public int getPeople() {
+		return people;
+	}
+
+	public void setPeople(int people) {
+		this.people = people;
 	}
 
 	@Override
 	public String toString() {
 		return "PackVO [packNum=" + packNum + ", tourNumber=" + tourNumber + ", roomNumber=" + roomNumber
-				+ ", carNumber=" + carNumber + ", saleRate=" + saleRate + "]";
+				+ ", carNumber=" + carNumber + ", startDate=" + startDate + ", endDate=" + endDate + ", people="
+				+ people + "]";
 	}
 
 }
