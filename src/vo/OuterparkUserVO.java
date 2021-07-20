@@ -32,7 +32,6 @@ public class OuterparkUserVO {
 		
 	public OuterparkUserVO(String userId, String userPassword, String userName, String userNickname, String userMail,
 			String usertype) {
-		super();
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userName = userName;

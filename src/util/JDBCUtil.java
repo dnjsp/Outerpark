@@ -55,7 +55,7 @@ public class JDBCUtil {
 		}
 	}
 	
-	public int Update(String query) {
+	public int update(String query) {
 		try {
 			conn = this.getConnection();
 			pstm = conn.prepareStatement(query);
@@ -68,27 +68,45 @@ public class JDBCUtil {
 		}
 	}
 	
-	public boolean SelectBoolean(String query) {
+	public boolean selectBoolean(String query) {
 		try {
 			conn = this.getConnection();
 			pstm = conn.prepareStatement(query);
 			rs = pstm.executeQuery();
-			return rs.next();
+			boolean flag = rs.next();
+			DBclose(conn, pstm, rs);
+			return flag;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
 	
-	public String SelectString(String query,String col) {
+	public String selectString(String query,String col) {
 		try {
 			conn = this.getConnection();
 			pstm = conn.prepareStatement(query);
 			rs = pstm.executeQuery();
 			rs.next();
-			return rs.getString(col);
+			String str = rs.getString(col);
+			DBclose(conn, pstm, rs);
+			return str;
 		}catch(Exception e) {
 			return null;
+		}
+	}
+	
+	public int selectint(String query,String col) {
+		try {
+			conn = this.getConnection();
+			pstm = conn.prepareStatement(query);
+			rs = pstm.executeQuery();
+			rs.next();
+			int i = rs.getInt(col);
+			DBclose(conn, pstm, rs);
+			return i;
+		}catch(Exception e) {
+			return 0;
 		}
 	}
 	

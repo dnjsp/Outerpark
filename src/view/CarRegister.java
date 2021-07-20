@@ -34,9 +34,9 @@ public class CarRegister {
 		System.out.print("차 색상> ");
 		String carColor = scanner.next();
 		if (carDao.insertCar(new CarVO(carNumber, LoginService.loginId.getUserId(), carKind, carPrice, carSeats, city, carColor)) == 1) {
-			System.out.println("등록 성공");
+			System.out.println("등록 성공\n\n\n");
 		} else {
-			System.out.println("등록에 실패했습니다.");
+			System.out.println("등록에 실패했습니다.\n\n\n");
 		}
 	}
 	
@@ -44,22 +44,24 @@ public class CarRegister {
 		System.out.print("차 번호> ");
 		String carNumber = scanner.next(); 
 		if (carDao.deleteCar(new CarVO(carNumber)) == 1) {
-			System.out.println("삭제되었습니다.");
+			System.out.println("삭제되었습니다.\n\n\n");
 		} else {
-			System.out.println("존재하지 않거나 본인이 등록한 차가 아닙니다.");
+			System.out.println("존재하지 않거나 본인이 등록한 차가 아닙니다.\n\n\n");
 		}
 	}
 	
 	public void carSearch() {
 		ArrayList<HashMap<String, Object>> list = carDao.select(LoginService.loginId);
 		int size = list.size();
-		String[] key = {"CAR_NUMBER","CAR_KIND","CAR_PRICE","CAR_SEATS","CITY","CAR_COLOR"};
-		System.out.println("번호\t종류\t가격\t인승\t지역\t색상");
+		System.out.println("번호\t\t종류\t\t가격\t인승\t지역\t색상");
 		for(int i=0; i<size;i++) {
-			for(int j=0; j<key.length; j++) {
-				System.out.print(list.get(i).get(key[j])+"\t");
-			}
-			System.out.println();
+			System.out.print(list.get(i).get("CAR_NUMBER")+"\t");
+			System.out.printf("%s\t",list.get(i).get("CAR_KIND"));
+			System.out.print(list.get(i).get("CAR_PRICE")+"\t");
+			System.out.print(list.get(i).get("CAR_SEATS")+"\t");
+			System.out.print(list.get(i).get("CITY")+"\t");
+			System.out.print(list.get(i).get("CAR_COLOR")+"\n");
 		}
+		System.out.println("\n\n\n");
 	}
 }

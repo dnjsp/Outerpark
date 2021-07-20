@@ -13,6 +13,10 @@ public class TourVO {
 		this.tourNumber = tourNumber;
 	}
 
+	public TourVO(String city) {
+		this.city = city;
+	}
+	
 	public TourVO(String userId, String tourName, String tourTime, int tourPrice, String city,
 			String explanation) {
 		this.userId = userId;

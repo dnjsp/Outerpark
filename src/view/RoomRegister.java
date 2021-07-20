@@ -36,9 +36,9 @@ public class RoomRegister {
 		System.out.print("설명> ");
 		String explanation = scanner.next();
 		if (roomDao.insertRoom(new RoomVO(LoginService.loginId.getUserId(), roomName, maxCapacity, roomCount, bedCount, roomPrice, city, explanation)) == 0) {
-			System.out.println("등록에 실패했습니다.");
+			System.out.println("등록에 실패했습니다.\n\n\n");
 		} else {
-			System.out.println("등록 성공");
+			System.out.println("등록 성공\n\n\n");
 		}
 	}
 	
@@ -46,22 +46,26 @@ public class RoomRegister {
 		System.out.print("방 번호> ");
 		int roomNumber = scanner.nextInt();
 		if (roomDao.deleteRoom(new RoomVO(roomNumber)) == 1) {
-			System.out.println("삭제되었습니다.");
+			System.out.println("삭제되었습니다.\n\n\n");
 		} else {
-			System.out.println("존재하지 않거나 본인이 등록한 방이 아닙니다.");
+			System.out.println("존재하지 않거나 본인이 등록한 방이 아닙니다.\n\n\n");
 		}
 	}
 	
 	public void roomSearch() {
 		ArrayList<HashMap<String, Object>> list = roomDao.select(LoginService.loginId);
 		int size = list.size();
-		String[] key = {"ROOM_NUMBER","ROOM_NAME","MAX_CAPACITY","ROOM_COUNT","BED_COUNT","ROOM_PRICE","CITY","EXPLANATION"};
-		System.out.println("번호\t이름\t수용인원\t방 개수\t침대 개수\t가격\t지역\t설명");
+		System.out.println("번호\t\t이름\t\t수용인원\t방 개수\t침대 개수\t가격\t지역\t설명");
 		for(int i=0; i<size;i++) {
-			for(int j=0; j<key.length; j++) {
-				System.out.print(list.get(i).get(key[j])+"\t");
-			}
-			System.out.println();
+			System.out.print(list.get(i).get("ROOM_NUMBER")+"\t");
+			System.out.printf("%16s\t",list.get(i).get("ROOM_NAME"));
+			System.out.print(list.get(i).get("MAX_CAPACITY")+"\t");
+			System.out.print(list.get(i).get("ROOM_COUNT")+"\t");
+			System.out.print(list.get(i).get("BED_COUNT")+"\t");
+			System.out.print(list.get(i).get("ROOM_PRICE")+"\t");
+			System.out.print(list.get(i).get("CITY")+"\t");
+			System.out.print(list.get(i).get("EXPLANATION")+"\n");
 		}
+		System.out.println("\n\n\n");
 	}
 }

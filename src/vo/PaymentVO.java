@@ -1,17 +1,17 @@
 package vo;
 
 public class PaymentVO {
-	private int cartNo;
+	private int cartNumber;
 	private String userId;
-	private int packNum;
+	private int packNumber;
 	private String payDate;
 	private String refund;
 	
-	public PaymentVO(int cartNo, String userId, int packNum, String payDate, String refund) {
+	public PaymentVO(int cartNumber, String userId, int packNum, String payDate, String refund) {
 		super();
-		this.cartNo = cartNo;
+		this.cartNumber = cartNumber;
 		this.userId = userId;
-		this.packNum = packNum;
+		this.packNumber = packNum;
 		this.payDate = payDate;
 		this.refund = refund;
 	}
@@ -19,16 +19,16 @@ public class PaymentVO {
 	public PaymentVO(String userId, int packNum, String payDate, String refund) {
 		super();
 		this.userId = userId;
-		this.packNum = packNum;
+		this.packNumber = packNum;
 		this.payDate = payDate;
 		this.refund = refund;
 	}
 	
 	public int getCartNo() {
-		return cartNo;
+		return cartNumber;
 	}
 	public void setCartNo(int cartNo) {
-		this.cartNo = cartNo;
+		this.cartNumber = cartNo;
 	}
 	public String getUserId() {
 		return userId;
@@ -37,10 +37,10 @@ public class PaymentVO {
 		this.userId = userId;
 	}
 	public int getPackNum() {
-		return packNum;
+		return packNumber;
 	}
 	public void setPackNum(int packNum) {
-		this.packNum = packNum;
+		this.packNumber = packNum;
 	}
 	public String getPayDate() {
 		return payDate;
@@ -57,7 +57,7 @@ public class PaymentVO {
 	
 	@Override
 	public String toString() {
-		return "PaymentVO [cartNo=" + cartNo + ", userId=" + userId + ", packNum=" + packNum + ", payDate=" + payDate
+		return "PaymentVO [cartNumber=" + cartNumber + ", userId=" + userId + ", packNumber=" + packNumber + ", payDate=" + payDate
 				+ ", refund=" + refund + "]";
 	}
 }

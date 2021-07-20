@@ -1,5 +1,6 @@
 package view;
 
+import controller.CustomerController;
 import controller.HostController;
 import dao.OuterparkUserDAO;
 import util.*;
@@ -17,7 +18,6 @@ public class LoginService {
 	
 	private OuterparkUserDAO userDao = OuterparkUserDAO.getInstance();
 	private ScannerBuffer scanner = ScannerBuffer.getInstance();
-	private HostController host = HostController.getInstance();
 
 	private SHA256Util sha = SHA256Util.getInstance();
 	private PatternCheckUtil pattern = PatternCheckUtil.getInstance();
@@ -42,16 +42,17 @@ public class LoginService {
 		userPassword = sha.encrypt(userPassword);
 		
 		if (userDao.loginUser(new OuterparkUserVO(userId, userPassword))) {
-			System.out.println("로그인 성공");
+			System.out.println("로그인 성공\n\n\n");
 			loginId = userDao.selectid(new OuterparkUserVO(userId));
 			if (loginId.getUsertype().equals("host")) {
-				host.hostMenu();
+				HostController.getInstance().hostMenu();
 				return 0;
 			} else {
-				return 8;
+				CustomerController.getInstance().customerMenu();
+				return 0;
 			}
 		} else {
-			System.out.println("아이디 혹은 비밀번호를 잘못 입력하셨습니다.");
+			System.out.println("아이디 혹은 비밀번호를 잘못 입력하셨습니다.\n\n\n");
 			return 0;
 		}
 	}
@@ -80,24 +81,21 @@ public class LoginService {
 			System.out.print("메일> ");
 			userMail = scanner.next();
 		}
-		System.out.print("타입 (host: 1, customer: 2)> ");
 		String userType = "";
 		while (userType.isEmpty()) {
+			System.out.print("타입 (host: 1, customer: 2)> ");
 			int userTypei = scanner.nextInt();
-			if (userTypei == 1) {
-				userType = "host";
-			} else if (userTypei == 2) {
-				userType = "customer";
-			} else {
-				System.out.println("다시 입력하세요.");
-				System.out.print("타입 (host: 1, customer: 2)> ");
-			} 
+			switch(userTypei) {
+				case 1: userType = "host"; break;
+				case 2: userType = "customer"; break;
+				default: System.out.println("다시 입력하세요.");
+			}
 		}
 		
 		if (userDao.insertUser(new OuterparkUserVO(userId, userPassword, userName, userNickname, userMail, userType)) == 1) {
-			System.out.println("회원가입 성공");
+			System.out.println("회원가입 성공\n\n\n");
 		} else {
-			System.out.println("회원가입 실패");
+			System.out.println("회원가입 실패\n\n\n");
 		}
 		return 0;
 	}
@@ -110,10 +108,11 @@ public class LoginService {
 		System.out.print("닉네임> ");
 		String userNickname = scanner.next();
 		if (userDao.idfoundUser(new OuterparkUserVO(userName, userMail, userNickname)) == null) {
-			System.out.println("아이디를 찾을 수 없습니다.");
+			System.out.println("아이디를 찾을 수 없습니다.\n\n\n");
 		} else {
 			System.out.print("아이디> ");
 			System.out.println(userDao.idfoundUser(new OuterparkUserVO(userName, userMail, userNickname)));
+			System.out.println("\n\n\n");
 		}
 		return 0;
 	}
@@ -128,13 +127,13 @@ public class LoginService {
 		System.out.print("닉네임> ");
 		String userNickname = scanner.next();
 		if (userDao.idfoundUser(new OuterparkUserVO(userName, userMail, userNickname)) == null) {
-			System.out.println("계정을 찾을 수 없습니다.");
+			System.out.println("계정을 찾을 수 없습니다.\n\n\n");
 		}else {
 			String temporary =tem.getTemporaryPassword();
 			send.ToSendMail(userMail, temporary);
 			temporary = sha.encrypt(temporary);
 			if(userDao.tempPassword(new OuterparkUserVO(userId, userName, userMail, userNickname), temporary)==1) {
-				System.out.println("임시 비밀번호를 메일로 보내드렸습니다.");
+				System.out.println("임시 비밀번호를 메일로 보내드렸습니다.\n\n\n");
 			}
 		}
 		return 0;
