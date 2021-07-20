@@ -114,7 +114,8 @@ public class CustomerRegister {
 		}
 		System.out.println("* 원하는 차량의 번호를 입력해주세요: (미선택시 0을 입력해주세요)");
 		int input = scanner.nextInt();
-		String carNumber = list.get(input-1).get("CAR_NUMBER")+"";
+		String carNumber = "0";
+		if(input != 0) carNumber = list.get(input-1).get("CAR_NUMBER")+"";
 		return carNumber;
 	}
 	
@@ -134,7 +135,8 @@ public class CustomerRegister {
 		}
 		System.out.println("* 원하는 방의 번호을 입력해주세요: (미선택시 0을 입력해주세요)");
 		int input= scanner.nextInt();
-		int roomNumber = Integer.parseInt(list.get(input-1).get("ROOM_NUMBER")+"");
+		int roomNumber = 0;
+		if(input != 0) roomNumber = Integer.parseInt(list.get(input-1).get("ROOM_NUMBER")+"");
 		return roomNumber;
 	}
 	
@@ -152,7 +154,8 @@ public class CustomerRegister {
 		}
 		System.out.println("* 원하는 투어의 번호을 입력해주세요: (미선택시 0을 입력해주세요)");
 		int input = scanner.nextInt();
-		int tourNumber = Integer.parseInt(list.get(input-1).get("TOUR_NUMBER")+"");
+		int tourNumber = 0;
+		if(input != 0) tourNumber = Integer.parseInt(list.get(input-1).get("TOUR_NUMBER")+"");
 		return tourNumber;
 	}
 }
