@@ -27,7 +27,7 @@ public class Payment {
 		System.out.println("\n\n < 번호 >\t< 가격 >\t< 상태 >\t< 수정날짜 >\n");
 		for(int i=0; i<size;i++) {
 			System.out.print("    " + (i + 1) + "\t\t");
-			System.out.print(formatter.format(list.get(i).get("PRICE"))+"\t\t");
+			System.out.print(formatter.format(list.get(i).get("PRICE"))+"\t");
 			System.out.print(list.get(i).get("STATE")+"\t");
 			System.out.print(list.get(i).get("PAY_DATE")+"\n\n");
 		}
@@ -49,11 +49,11 @@ public class Payment {
 		System.out.printf("\n\n 🤍 방 정보 🤍\n\n 방 이름 : %s\n\n 방 개수 : %s개\n\n 침대 개수 : %s개\n\n 방 인원 : %s명\n\n 방 설명 : %s\n\n"
 				,listRoom.get(0).get("ROOM_NAME"),listRoom.get(0).get("ROOM_COUNT")
 				,listRoom.get(0).get("BED_COUNT"),listRoom.get(0).get("MAX_CAPACITY"),listRoom.get(0).get("EXPLANATION"));
-		System.out.printf("\n\n 🤍 차정보 🤍\n\n 차 종류 : %s\n 차 좌석 : %s인승\n\n",
+		System.out.printf("\n\n 🤍 차정보 🤍\n\n 차 종류 : %s\n\n 차 좌석 : %s인승\n\n",
 				listCar.get(0).get("CAR_KIND"),listCar.get(0).get("CAR_SEATS"));
 		System.out.printf("\n\n 🤍 투어정보 🤍\n\n 투어 이름 : %s\n\n 투어 시간 : %s시간 \n\n 투어 설명 : %s\n\n"
 				,listTour.get(0).get("TOUR_NAME"),listTour.get(0).get("TOUR_TIME"),listTour.get(0).get("EXPLANATION"));
-		System.out.printf("\n\n 🤍 지역 : %s 🤍\n\n 선택인원 : %s명\n\n가격 : %s원\n\n날짜 : %s ~ %s\n\n"
+		System.out.printf("\n\n 🤍 지역 : %s 🤍\n\n 선택인원 : %s명\n\n 가격 : %s원\n\n 날짜 : %s ~ %s\n\n"
 				,listCart.get(0).get("CITY"),listCart.get(0).get("PEOPLE"),formatter.format(listCart.get(0).get("PRICE"))
 				,listCart.get(0).get("START_DATE"),listCart.get(0).get("END_DATE"));
 	}
@@ -61,11 +61,11 @@ public class Payment {
 	public void paymentStatement(String cartNumber, String state) {
 		if(state.equals("결제대기")) {
 			while(true) {
-				System.out.print(" ✔ 결제 하시겠습니까? (1: yes  2: no) › ");
+				System.out.print("\n ✔ 결제 하시겠습니까? (1: yes  2: no) › ");
 				switch (scanner.nextInt()) {
 					case 1: 
 						PaymentDAO.getInstance().updateState("결제완료", cartNumber);
-						System.out.println("\n ◈◈ 결제가 완료되었습니다 ◈◈\n");
+						System.out.println("\n ◈◈ 결제가 완료되었습니다 ◈◈\n\n");
 						return;
 					case 2: return;
 					default: break;
@@ -73,11 +73,11 @@ public class Payment {
 			}
 		}else if(state.equals("결제완료")) {
 			while(true) {
-				System.out.print(" ✔ 환불 하시겠습니까? (1: yes  2: no) › ");
+				System.out.print("\n ✔ 환불 하시겠습니까? (1: yes  2: no) › ");
 				switch (scanner.nextInt()) {
 					case 1: 
 						PaymentDAO.getInstance().updateState("환불완료", cartNumber);
-						System.out.println("\n ◈◈ 환불이 완료되었습니다 ◈◈\n");
+						System.out.println("\n ◈◈ 환불이 완료되었습니다 ◈◈\n\n");
 						return;
 					case 2: return;
 					default: break;

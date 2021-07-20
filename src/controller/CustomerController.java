@@ -23,7 +23,7 @@ public class CustomerController {
 		System.out.println(" \t   Customer로 입장하였습니다. \t\t\t");
 		System.out.println(" ─────────────────────────────────────────────");
 		while (true) {
-			System.out.println("\n 1.패키지 | 2.결제 | 3.마이페이지 | 4.로그아웃\n");
+			System.out.println("\n\n 1.패키지 | 2.결제 | 3.마이페이지 | 4.로그아웃\n");
 			System.out.print(" ✔ 번호를 입력해 주세요 › ");
 			int input = scanner.nextInt();
 			switch (input) {
