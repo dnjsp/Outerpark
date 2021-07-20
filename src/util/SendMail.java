@@ -15,7 +15,7 @@ public class SendMail {
 	private SendMail() {}
 	
 	static final String FROM = "show5116@naver.com";
-    static final String FROMNAME = "2팀 서비스";
+    static final String FROMNAME = "Outerpark 서비스";
     static final String SMTP_USERNAME = "show5116@naver.com";
     static final String SMTP_PASSWORD = "Yyj14161091!";
     static final String HOST = "smtp.naver.com";
@@ -25,7 +25,7 @@ public class SendMail {
     public void ToSendMail(String mail,String password) {
     	String BODY = String.join(
     	        System.getProperty("line.separator"),
-    	        "<h1>안녕하세요 2팀입니다.</h1>",
+    	        "<h1>안녕하세요 Outerpark입니다.</h1>",
     	        "<p>임시 비밀번호는",
     	        password,
     	        " 입니다.</p>"

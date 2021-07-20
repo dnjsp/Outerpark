@@ -1,6 +1,8 @@
 package view;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import dao.*;
@@ -21,7 +23,7 @@ public class CustomerRegister {
 	private ScannerBuffer scanner = ScannerBuffer.getInstance();
 	
 	public void packMenu() {
-		System.out.println("== PACKAGE ==");
+		System.out.println("\n=============== PACKAGE ===============");
 		
 		String wantCity = "";
 		while(wantCity.isEmpty()) {
@@ -41,20 +43,22 @@ public class CustomerRegister {
 		}
 		
 		System.out.print("* 이용 인원: ");
-		int maxPeople = scanner.nextInt();
-
-		
-		int startDate = 0;
-		while(startDate<20210000 || startDate>21000000) {
-			System.out.println("* 이용 시작일: (ex.20210719)");
-			startDate = scanner.nextInt();
+	      int maxPeople = scanner.nextInt();
+	      Date now = new Date();
+	      SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
+	      int dateNow = Integer.parseInt(date.format(now));
+	      
+	      int startDate = 0;
+	      while(startDate<dateNow || startDate>21000000 ) {
+	         System.out.print("* 이용 시작일 (ex.20210719) : ");
+	         startDate = scanner.nextInt();
 		}
 		int endDate =0;
-		while((endDate<20210000 || endDate>21000000) || endDate <= startDate) {
-			System.out.println("* 이용 종료일: (ex.20210721)");
+		while(endDate <= startDate) {
+			System.out.print("* 이용 종료일 (ex.20210721) : ");
 			endDate = scanner.nextInt();		
 		}
-		System.out.println("== 확인창 ==");
+		System.out.println("============ 확인창 =========");
 		System.out.println("* 입력한 지역: " + wantCity);
 		System.out.println("* 입력한 인원: " + maxPeople);
 		System.out.println("* 입력한 날짜: " + startDate + " ~ " + endDate);
@@ -72,8 +76,8 @@ public class CustomerRegister {
 		int tourNumber = tourChoice(wantCity,maxPeople);
 		int cnt = 0;
 		if(carNumber.equals("0")) cnt++;
-		if(roomNumber == 0) cnt++;
-		if(tourNumber == 0) cnt++;
+		if(roomNumber==0) cnt++;
+		if(tourNumber==0) cnt++;
 		switch (cnt) {
 		case 0: saleRate = 0.8; break;
 		case 1: saleRate = 0.9; break;
@@ -86,7 +90,7 @@ public class CustomerRegister {
 			int carPrice = CarDAO.getInstance().selectCarPrice(carNumber);
 			int roomPrice = RoomDAO.getInstance().selectRoomPrice(roomNumber);
 			int tourPrice = TourDAO.getInstance().selectTourPrice(tourNumber);
-			int price = (endDate-startDate)*(int)((carPrice+roomPrice+tourPrice)*saleRate);
+			int price = (endDate-startDate)*(int)((carPrice+roomPrice+tourPrice*maxPeople)*saleRate);
 			
 			PaymentDAO.getInstance().insertPayment(LoginService.loginId.getUserId(), packNumber,price);
 			System.out.println("정상등록 되었습니다.\n\n\n");
@@ -98,8 +102,9 @@ public class CustomerRegister {
 	public String carChoice(String wantCity, int maxPeople) {
 		ArrayList<HashMap<String, Object>> list = CarDAO.getInstance().selectCar(new CarVO(wantCity,maxPeople));
 		int size = list.size();
-		System.out.println("번호\t\t종류\t가격\t인승\t지역\t색상");
+		System.out.println("번호\t차번호\t\t종류\t가격\t인승\t지역\t색상");
 		for(int i=0; i<size;i++) {
+			System.out.print(i+1+"\t");
 			System.out.print(list.get(i).get("CAR_NUMBER")+"\t");
 			System.out.printf("%s\t",list.get(i).get("CAR_KIND"));
 			System.out.print(list.get(i).get("CAR_PRICE")+"\t");
@@ -108,16 +113,17 @@ public class CustomerRegister {
 			System.out.print(list.get(i).get("CAR_COLOR")+"\n");
 		}
 		System.out.println("* 원하는 차량의 번호를 입력해주세요: (미선택시 0을 입력해주세요)");
-		String carNumber = scanner.next();
+		int input = scanner.nextInt();
+		String carNumber = list.get(input-1).get("CAR_NUMBER")+"";
 		return carNumber;
 	}
 	
 	public int roomChoice(String wantCity, int maxPeople) {
 		ArrayList<HashMap<String, Object>> list = RoomDAO.getInstance().selectRoom(new RoomVO(wantCity,maxPeople));
 		int size = list.size();
-		System.out.println("방번호\t\t숙소이름\t\t방갯수\t침대갯수\t숙소가격\t지역\t숙소설명");
+		System.out.println("번호\t\t숙소이름\t\t최대인원\t방갯수\t침대갯수\t숙소가격\t지역\t숙소설명");
 		for(int i=0; i<size;i++) {
-			System.out.print(list.get(i).get("ROOM_NUMBER")+"\t");
+			System.out.print(i+1+"\t");
 			System.out.printf("%16s\t",list.get(i).get("ROOM_NAME"));
 			System.out.print(list.get(i).get("MAX_CAPACITY")+"\t");
 			System.out.print(list.get(i).get("ROOM_COUNT")+"\t");
@@ -127,16 +133,17 @@ public class CustomerRegister {
 			System.out.print(list.get(i).get("EXPLANATION")+"\n");
 		}
 		System.out.println("* 원하는 방의 번호을 입력해주세요: (미선택시 0을 입력해주세요)");
-		int roomNumber= scanner.nextInt();
+		int input= scanner.nextInt();
+		int roomNumber = Integer.parseInt(list.get(input-1).get("ROOM_NUMBER")+"");
 		return roomNumber;
 	}
 	
 	public int tourChoice(String wantCity, int maxPeople) {
 		ArrayList<HashMap<String, Object>> list = TourDAO.getInstance().selectTour(new TourVO(wantCity));
 		int size = list.size();
-		System.out.println("투어번호\t\t투어이름\t\t투어시간\t투어가격\t지역\t투어설명");
+		System.out.println("번호\t\t투어이름\t\t투어시간\t투어가격\t지역\t투어설명");
 		for(int i=0; i<size;i++) {
-			System.out.print(list.get(i).get("TOUR_NUMBER")+"\t");
+			System.out.print(i+1+"\t");
 			System.out.printf("%16s\t",list.get(i).get("TOUR_NAME"));
 			System.out.print(list.get(i).get("TOUR_TIME")+"\t");
 			System.out.print(list.get(i).get("TOUR_PRICE")+"\t");
@@ -144,7 +151,8 @@ public class CustomerRegister {
 			System.out.print(list.get(i).get("EXPLANATION")+"\n");
 		}
 		System.out.println("* 원하는 투어의 번호을 입력해주세요: (미선택시 0을 입력해주세요)");
-		int tourNumber = scanner.nextInt();
+		int input = scanner.nextInt();
+		int tourNumber = Integer.parseInt(list.get(input-1).get("TOUR_NUMBER")+"");
 		return tourNumber;
 	}
 }

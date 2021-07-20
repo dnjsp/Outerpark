@@ -54,7 +54,7 @@ public class TourRegister {
 		System.out.println("번호\t\t이름\t\t시간\t가격\t지역\t설명");
 		for(int i=0; i<size;i++) {
 			System.out.print(list.get(i).get("TOUR_NUMBER")+"\t");
-			System.out.printf("%16s\t",list.get(i).get("TOUR_NUMBER"));
+			System.out.printf("%16s\t",list.get(i).get("TOUR_NAME"));
 			System.out.print(list.get(i).get("TOUR_TIME")+"\t");
 			System.out.print(list.get(i).get("TOUR_PRICE")+"\t");
 			System.out.print(list.get(i).get("CITY")+"\t");

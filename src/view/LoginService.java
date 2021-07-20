@@ -27,7 +27,7 @@ public class LoginService {
 	public static OuterparkUserVO loginId; 
 	
 	public int main() {
-		System.out.println("== 어서오세요. OuterPark입니다. ==");
+		System.out.println("================== 어서오세요. OuterPark입니다. ==================");
 		System.out.println("1.로그인 | 2.회원가입 | 3.아이디 찾기 | 4.임시 비밀번호 발급 | 5.프로그램 종료");
 		System.out.print("번호를 입력해주세요> ");
 		int input = scanner.nextInt();
@@ -77,7 +77,7 @@ public class LoginService {
 		String userNickname = scanner.next();
 		String userMail = "";
 		while(!pattern.patternCheck(userMail, pattern.mailPattern)) {
-			System.out.println("올바른 메일 형식으로 입력해야 합니다.");
+			System.out.println("[메일은 올바른 메일 형식으로 입력해야 합니다.]");
 			System.out.print("메일> ");
 			userMail = scanner.next();
 		}

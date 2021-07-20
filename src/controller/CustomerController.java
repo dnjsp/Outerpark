@@ -19,7 +19,7 @@ public class CustomerController {
 	private ScannerBuffer scanner = ScannerBuffer.getInstance();
 	
 	public void customerMenu() {
-		System.out.println("== Customer로 입장하였습니다. ==");
+		System.out.println("==== Customer로 입장하였습니다. ====");
 		while (true) {
 			System.out.println("1.패키지 2.결제 3.마이페이지 4.로그아웃");
 			System.out.print("번호를 입력해주세요> ");

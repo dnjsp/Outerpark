@@ -16,7 +16,7 @@ public class HostController {
 	private ScannerBuffer scanner = ScannerBuffer.getInstance(); 
 	
 	public void hostMenu() {
-		System.out.println("== Host로 입장하였습니다. ==");
+		System.out.println("========= Host로 입장하였습니다. =========");
 		while(true) {
 			System.out.println("1.방 2.렌트카 3.관광명소 4.마이페이지 5.로그아웃"); 
 			System.out.print("번호를 입력해주세요> ");
