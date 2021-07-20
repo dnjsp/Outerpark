@@ -102,11 +102,11 @@ public class CustomerRegister {
 	public String carChoice(String wantCity, int maxPeople) {
 		ArrayList<HashMap<String, Object>> list = CarDAO.getInstance().selectCar(new CarVO(wantCity,maxPeople));
 		int size = list.size();
-		System.out.println("번호\t차번호\t\t종류\t가격\t인승\t지역\t색상");
+		System.out.println("번호\t차번호\t\t\t종류\t\t가격\t인승\t지역\t색상");
 		for(int i=0; i<size;i++) {
 			System.out.print(i+1+"\t");
 			System.out.print(list.get(i).get("CAR_NUMBER")+"\t");
-			System.out.printf("%s\t",list.get(i).get("CAR_KIND"));
+			System.out.printf("%16s\t",list.get(i).get("CAR_KIND"));
 			System.out.print(list.get(i).get("CAR_PRICE")+"\t");
 			System.out.print(list.get(i).get("CAR_SEATS")+"\t");
 			System.out.print(list.get(i).get("CITY")+"\t");

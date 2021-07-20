@@ -29,15 +29,15 @@ public class LoginService {
 	public int main() {
 		System.out.println("================== 어서오세요. OuterPark입니다. ==================");
 		System.out.println("1.로그인 | 2.회원가입 | 3.아이디 찾기 | 4.임시 비밀번호 발급 | 5.프로그램 종료");
-		System.out.print("번호를 입력해주세요> ");
+		System.out.print("✔ 번호를 입력해주세요 › ");
 		int input = scanner.nextInt();
 		return input;
 	}
 	
 	public int login() {
-		System.out.print("아이디> ");
+		System.out.print("✔ 아이디 › ");
 		String userId = scanner.next();
-		System.out.print("비밀번호> ");
+		System.out.print("✔ 비밀번호 › ");
 		String userPassword = scanner.next();
 		userPassword = sha.encrypt(userPassword);
 		
@@ -60,8 +60,8 @@ public class LoginService {
 	public int signUp() {
 		String userId = "";
 		while(!pattern.patternCheck(userId,pattern.idPattern)) {
-			System.out.println("아이디는 첫문자 영어, 6자 이상이어야 합니다.");
-			System.out.print("아이디> ");
+			System.out.println("\n[ 아이디는 첫문자 영어, 6자 이상이어야 합니다. ]");
+			System.out.print("✔ 아이디 › ");
 			userId = scanner.next();
 		}
 		String userPassword = "";
