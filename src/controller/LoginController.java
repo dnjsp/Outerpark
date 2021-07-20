@@ -21,7 +21,7 @@ public class LoginController {
 				case 4: view = loginservice.temporary(); break;
 				case 5: System.exit(0);
 				default:
-					System.out.println("다시 입력해주세요.");
+					System.out.println("\n [ 잘못 입력하였습니다 ]\n");
 					view = 0;
 					break;
 			}	
