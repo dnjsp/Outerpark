@@ -55,7 +55,7 @@ public class Payment {
 				,listTour.get(0).get("TOUR_NAME"),listTour.get(0).get("TOUR_TIME"),listTour.get(0).get("EXPLANATION"));
 		System.out.printf("\n\n 🤍 지역 : %s 🤍\n\n 선택인원 : %s명\n\n 가격 : %s원\n\n 날짜 : %s ~ %s\n\n"
 				,listCart.get(0).get("CITY"),listCart.get(0).get("PEOPLE"),formatter.format(listCart.get(0).get("PRICE"))
-				,listCart.get(0).get("START_DATE"),listCart.get(0).get("END_DATE"));
+				,(listCart.get(0).get("START_DATE")+"").substring(0,10),(listCart.get(0).get("END_DATE")+"").substring(0, 10));
 	}
 	
 	public void paymentStatement(String cartNumber, String state) {

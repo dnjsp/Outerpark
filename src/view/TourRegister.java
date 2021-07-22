@@ -41,7 +41,7 @@ public class TourRegister {
 	}
 	
 	public void tourDelete() {
-		System.out.print("\n ✔ 관광명소 번호 › ");
+		System.out.print("\n ✔ 삭제할 관광명소 번호 › ");
 		int tourNumber = scanner.nextInt();
 		if (tourDao.deleteTour(new TourVO(tourNumber)) == 1) {
 			System.out.println("\n ◈◈ 삭제되었습니다 ◈◈\n");

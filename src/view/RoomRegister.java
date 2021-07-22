@@ -45,7 +45,7 @@ public class RoomRegister {
 	}
 	
 	public void roomDelete() {
-		System.out.print("\n ✔ 방 번호 › ");
+		System.out.print("\n ✔ 삭제할 방 번호 › ");
 		int roomNumber = scanner.nextInt();
 		if (roomDao.deleteRoom(new RoomVO(roomNumber)) == 1) {
 			System.out.println("\n ◈◈ 삭제되었습니다 ◈◈\n");
