@@ -104,7 +104,7 @@ public class JDBCUtil {
 			return 0;
 		}
 	}
-	
+
 	public ArrayList<HashMap<String, Object>> selectList(String query) {
 		ArrayList<HashMap<String, Object>> list = new ArrayList<>();
 		try {

@@ -17,7 +17,7 @@ public class CustomerController {
 	}
 
 	private ScannerBuffer scanner = ScannerBuffer.getInstance();
-	
+
 	public void customerMenu() {
 		System.out.println(" ─────────────────────────────────────────────");
 		System.out.println(" \t   Customer로 입장하였습니다. \t\t\t");

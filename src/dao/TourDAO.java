@@ -22,12 +22,14 @@ public class TourDAO {
 		String query = String.format("INSERT INTO TOUR VALUES (%s,'%s','%s','%s',%d,'%s','%s')"
 				, "SEQ_TOUR.NEXTVAL", vo.getUserId(), vo.getTourName(), vo.getTourTime(), vo.getTourPrice(), vo.getCity(), vo.getExplanation() );
 		return jdbc.update(query);
+
 	}
 	
 	public int deleteTour(TourVO vo) {
 		String query = String.format("DELETE FROM CAR WHERE TOUR_NUMBER = %d AND USER_ID = '%s'", vo.getTourNumber(),LoginService.loginId.getUserId());
 		return jdbc.update(query);
 	}
+
 
 	public ArrayList<HashMap<String, Object>> select(OuterparkUserVO vo) {
 		String query = String.format("SELECT * FROM TOUR WHERE USER_ID = '%s'", vo.getUserId());

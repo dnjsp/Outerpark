@@ -10,6 +10,7 @@ import dao.*;
 import vo.*;
 import util.*;
 
+
 public class CustomerRegister {
 	
 	private CustomerRegister() {}
@@ -96,11 +97,11 @@ public class CustomerRegister {
 		if(roomNumber==0) cnt++;
 		if(tourNumber==0) cnt++;
 		switch (cnt) {
-		case 0: saleRate = 0.8; break;
-		case 1: saleRate = 0.9; break;
-		case 2: saleRate = 1; break;
-		case 3: System.out.println("\n [ 입력된 정보가 없습니다 ]\n"); return;
-		default: System.out.println("\n ※※ 에러 ※※\n"); return;
+			case 0: saleRate = 0.8; break;
+			case 1: saleRate = 0.9; break;
+			case 2: saleRate = 1; break;
+			case 3: System.out.println("\n [ 입력된 정보가 없습니다 ]\n"); return;
+			default: System.out.println("\n ※※ 에러 ※※\n"); return;
 		}
 		if(PackDAO.getInstance().insertPack(new PackVO(tourNumber,roomNumber,carNumber,startDate,endDate,maxPeople))==1) {
 			int packNumber = PackDAO.getInstance().getPackNumber();

@@ -2,7 +2,12 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/A_TeachingMaterial/1.BasicJava/workspace/javax.mail.jar"/>
 	<classpathentry kind="lib" path="D:/A_TeachingMaterial/1.BasicJava/workspace/ojdbc8-21.1.0.0.jar"/>
+=======
+	<classpathentry kind="lib" path="D:/A_TeachingMaterial/1.BasicJava/workspace/Bookstore/bookstore/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="D:/A_TeachingMaterial/1.BasicJava/workspace/javax.mail.jar"/>
+>>>>>>> 52a1a8e3191290d33b866d216650a9fc40a5cd2b
 	<classpathentry kind="output" path="bin"/>
 </classpath>

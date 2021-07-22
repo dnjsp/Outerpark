@@ -18,7 +18,6 @@ public class LoginService {
 	
 	private OuterparkUserDAO userDao = OuterparkUserDAO.getInstance();
 	private ScannerBuffer scanner = ScannerBuffer.getInstance();
-
 	private SHA256Util sha = SHA256Util.getInstance();
 	private PatternCheckUtil pattern = PatternCheckUtil.getInstance();
 	private SendMail send = SendMail.getInstance();

@@ -27,6 +27,7 @@ public class CarController {
 				case 3: carRegister.carSearch(); break;
 				case 4: return;
 				default: System.out.println("\n [ 잘못 입력하였습니다 ]\n");
+
 			}
 		}
 	}

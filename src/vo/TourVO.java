@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 52a1a8e3191290d33b866d216650a9fc40a5cd2b
 package vo;
 
 public class TourVO {
@@ -9,6 +13,7 @@ public class TourVO {
 	private String city;
 	private String explanation;
 	
+<<<<<<< HEAD
 	public TourVO(int tourNumber) {
 		this.tourNumber = tourNumber;
 	}
@@ -16,6 +21,15 @@ public class TourVO {
 	public TourVO(String city) {
 		this.city = city;
 	}
+=======
+	public TourVO(String city) {
+		this.city = city;
+	}
+		
+	public TourVO(int tourNumber) {
+		this.tourNumber = tourNumber;
+	}
+>>>>>>> 52a1a8e3191290d33b866d216650a9fc40a5cd2b
 	
 	public TourVO(String userId, String tourName, String tourTime, int tourPrice, String city,
 			String explanation) {
@@ -26,7 +40,11 @@ public class TourVO {
 		this.city = city;
 		this.explanation = explanation;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 52a1a8e3191290d33b866d216650a9fc40a5cd2b
 	public int getTourNumber() {
 		return tourNumber;
 	}
@@ -88,4 +106,8 @@ public class TourVO {
 		return "TourVO [tourNumber=" + tourNumber + ", userId=" + userId + ", tourName=" + tourName + ", tourTime="
 				+ tourTime + ", tourPrice=" + tourPrice + ", city=" + city + ", explanation=" + explanation + "]";
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 52a1a8e3191290d33b866d216650a9fc40a5cd2b

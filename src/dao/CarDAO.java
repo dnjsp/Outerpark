@@ -20,12 +20,14 @@ public class CarDAO {
 	 
 	public int insertCar(CarVO vo) {
 		String query = String.format("INSERT INTO CAR VALUES ('%s','%s','%s',%d,%d,'%s','%s')"
-				, vo.getCarNumber(), vo.getUserId(), vo.getCarKind(), vo.getCarPrice(), vo.getCarSeats(), vo.getCity(), vo.getCarColor());
+				, vo.getCarNumber(), vo.getUserId(), vo.getCarKind(), vo.getCarPrice()
+				, vo.getCarSeats(), vo.getCity(), vo.getCarColor());
 		return jdbc.update(query);
 	}
 	
 	public int deleteCar(CarVO vo) {
-		String query = String.format("DELETE FROM CAR WHERE CAR_NUMBER = '%s' AND USER_ID = '%s'", vo.getCarNumber(),LoginService.loginId.getUserId());
+		String query = String.format("DELETE FROM CAR WHERE CAR_NUMBER = '%s' AND USER_ID = '%s'", 
+				vo.getCarNumber(),LoginService.loginId.getUserId());
 		return jdbc.update(query);
 	}
 	

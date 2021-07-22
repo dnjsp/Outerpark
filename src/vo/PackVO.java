@@ -5,11 +5,19 @@ public class PackVO {
 	private int tourNumber;
 	private int roomNumber;
 	private String carNumber;
+<<<<<<< HEAD
 	private int startDate;
 	private int endDate;
 	private int people;
 	
 	public PackVO(int packNum, int tourNumber, int roomNumber, String carNumber, int startDate, int endDate,
+=======
+	private String startDate;
+	private String endDate;
+	private int people;
+	
+	public PackVO(int packNum, int tourNumber, int roomNumber, String carNumber, String startDate, String endDate,
+>>>>>>> 52a1a8e3191290d33b866d216650a9fc40a5cd2b
 			int people) {
 		this.packNum = packNum;
 		this.tourNumber = tourNumber;
@@ -19,9 +27,16 @@ public class PackVO {
 		this.endDate = endDate;
 		this.people = people;
 	}
+<<<<<<< HEAD
 	
 	public PackVO(int tourNumber, int roomNumber, String carNumber, int startDate, int endDate,
 			int people) {
+=======
+
+	public PackVO(int tourNumber, int roomNumber, String carNumber, String startDate, String endDate,
+			int people) {
+		super();
+>>>>>>> 52a1a8e3191290d33b866d216650a9fc40a5cd2b
 		this.tourNumber = tourNumber;
 		this.roomNumber = roomNumber;
 		this.carNumber = carNumber;
@@ -29,7 +44,11 @@ public class PackVO {
 		this.endDate = endDate;
 		this.people = people;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 52a1a8e3191290d33b866d216650a9fc40a5cd2b
 	public int getPackNum() {
 		return packNum;
 	}
@@ -62,6 +81,7 @@ public class PackVO {
 		this.carNumber = carNumber;
 	}
 
+<<<<<<< HEAD
 	public int getStartDate() {
 		return startDate;
 	}
@@ -75,6 +95,21 @@ public class PackVO {
 	}
 
 	public void setEndDate(int endDate) {
+=======
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+>>>>>>> 52a1a8e3191290d33b866d216650a9fc40a5cd2b
 		this.endDate = endDate;
 	}
 
@@ -92,4 +127,9 @@ public class PackVO {
 				+ ", carNumber=" + carNumber + ", startDate=" + startDate + ", endDate=" + endDate + ", people="
 				+ people + "]";
 	}
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> 52a1a8e3191290d33b866d216650a9fc40a5cd2b

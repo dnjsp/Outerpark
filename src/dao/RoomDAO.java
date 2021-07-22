@@ -25,7 +25,8 @@ public class RoomDAO {
 	}
 	
 	public int deleteRoom(RoomVO vo) {
-		String query = String.format("DELETE FROM ROOM WHERE ROOM_NUMBER = '%s' AND USER_ID = '%s'", vo.getRoomNumber(),LoginService.loginId.getUserId());
+		String query = String.format("DELETE FROM ROOM WHERE ROOM_NUMBER = '%s' AND USER_ID = '%s'", 
+				vo.getRoomNumber(),LoginService.loginId.getUserId());
 		return jdbc.update(query);
 	}
 
@@ -33,7 +34,7 @@ public class RoomDAO {
 		String query = String.format("SELECT * FROM ROOM WHERE USER_ID = '%s'", vo.getUserId());
 		return jdbc.selectList(query);
 	}
-	
+
 	public ArrayList<HashMap<String, Object>> selectRoom (RoomVO vo) {
 		String query = String.format("SELECT * FROM ROOM WHERE CITY = '%s' AND MAX_CAPACITY >= %d", vo.getCity(), vo.getMaxCapacity());
 		return jdbc.selectList(query);

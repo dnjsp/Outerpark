@@ -43,42 +43,58 @@ public class OuterparkUserVO {
 	public String getUserId() {
 		return userId;
 	}
+	
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
 	public String getUserPassword() {
 		return userPassword;
 	}
+	
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
+	
 	public String getUserName() {
 		return userName;
 	}
+	
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
 	public String getUserNickname() {
 		return userNickname;
 	}
+	
 	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
 	}
+	
 	public String getUserMail() {
 		return userMail;
 	}
+	
 	public void setUserMail(String userMail) {
 		this.userMail = userMail;
 	}
+	
 	public String getUsertype() {
 		return usertype;
 	}
+	
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
 	}
+	
 	@Override
 	public String toString() {
 		return "outerparkUserVO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
 				+ ", userNickname=" + userNickname + ", userMail=" + userMail + ", usertype=" + usertype + "]";
 	}
+<<<<<<< HEAD:src/vo/OuterparkUserVO.java
 }
+=======
+}
+>>>>>>> 52a1a8e3191290d33b866d216650a9fc40a5cd2b:src/OuterparkUser/OuterparkUserVO.java
